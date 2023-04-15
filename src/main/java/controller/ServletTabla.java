@@ -36,10 +36,6 @@ public class ServletTabla extends HttpServlet {
 				+ "    <tr>\r\n"
 				+ "      <th>ID</th>\r\n"
 				+ "      <th>Fecha de compra</th>\r\n"
-				+ "      <th>Tipo de pasaporte</th>\r\n"
-				+ "      <th>Costo unitario</th>\r\n"
-				+ "      <th>Cantidad de pasaportes</th>\r\n"
-				+ "      <th>Número de atracciones</th>\r\n"
 				+ "    </tr>\r\n"
 				+ "  </thead>\r\n"
 				+ "  <tbody>\r\n");
