@@ -1,4 +1,4 @@
-function validarFormulario(event) {
+function validarFormulario() {
   event.preventDefault(); // Detenemos el comportamiento predeterminado del formulario
   
   var usuario = document.getElementById("usuario").value;

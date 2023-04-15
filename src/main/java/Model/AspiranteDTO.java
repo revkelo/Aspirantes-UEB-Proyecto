@@ -9,15 +9,17 @@ public class AspiranteDTO {
 	private String homologado;
 	private int costo;
 
-	public AspiranteDTO(String nombre, String fecha, String colegio, String carrera, String estrato,
-			String homologado) {
 
+	public AspiranteDTO(String nombre, String fecha, String colegio, String carrera, String estrato, String homologado,
+			int costo) {
+		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
 		this.colegio = colegio;
 		this.carrera = carrera;
 		this.estrato = estrato;
 		this.homologado = homologado;
+		this.costo = costo;
 	}
 
 	
@@ -28,6 +30,9 @@ public class AspiranteDTO {
 	public String getNombre() {
 		return nombre;
 	}
+
+
+
 
 
 
