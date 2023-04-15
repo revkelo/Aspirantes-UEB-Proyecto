@@ -2,38 +2,20 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Autenticación de administrador</title>
+    <script src="admin-login.js"></script>
+  </head>
+  <body>
+    <h2>Inicie sesión como administrador</h2>
+    <form method="post" action="/UEB1/admin">
+      <label for="username">Usuario:</label>
+      <input type="text" id="username" name="username"><br>
 
-<head>
-<title>Iniciar sesión - Mi sitio web</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Carga la biblioteca de Bootstrap -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</link>
-<script src="login.js"></script>
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password"><br>
 
-
-
-</head>
-
-<body>
-
-
-	<div class="container">
-
-		<h2>Iniciar sesión</h2>
-		<form onsubmit="validarFormulario(event)">
-			<div class="form-group">
-				<label for="usuario">Usuario:</label> <input type="text"
-					class="form-control" id="usuario" placeholder="Ingresa tu usuario">
-			</div>
-			<div class="form-group">
-				<label for="pwd">Contraseña:</label> <input type="password"
-					class="form-control" id="pwd" placeholder="Ingresa tu contraseña">
-			</div>
-			<button type="submit" class="btn btn-primary">Ingresar</button>
-		</form>
-</body>
-
+      <input type="submit" value="Iniciar sesión">
+    </form>
+  </body>
 </html>

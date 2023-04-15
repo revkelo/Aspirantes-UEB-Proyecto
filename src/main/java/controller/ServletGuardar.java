@@ -77,11 +77,22 @@ public class ServletGuardar extends HttpServlet {
 		}
 
 		System.out.println("File uploaded successfully");
-		resp.getWriter().print("El archivo " + fileName + " ha sido subido exitosamente a la siguiente ubicación: "
+		resp.getWriter().print("El archivo " + fileName + " ha sido subido exitosamente a la siguiente ubicaciï¿½n: "
 				+ file.getAbsolutePath());
 
 		salida.close();
 
 	}
+	@Override
+		protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html");
+		PrintWriter salida = resp.getWriter();
+		salida.println("<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n"
+				+ "<title>Insert title here</title>\r\n" + "</head>\r\n" + "<body>\r\n"
+				+ "<h1>ELIMINAR</h1>\r\n" + "</body>\r\n" + "</html>");
+		salida.close();
+
+			super.doDelete(req, resp);
+		}
 
 }
