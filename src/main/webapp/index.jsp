@@ -8,8 +8,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Carga la biblioteca de Bootstrap -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+	crossorigin="anonymous"></script>
+	
 <script src="script.js"></script>
 
 </head>
@@ -109,7 +117,7 @@
 					<option value="Optometría">Optometría</option>
 					<option value="Química Farmacéutica">Química Farmacéutica</option>
 
-				</select >
+				</select>
 				<p>
 					El costo de tu carrera es: <span id="costo"></span>
 				</p>
@@ -119,7 +127,7 @@
 			</div>
 			<div class="form-group">
 				<label for="estrato">Estrato:</label> <select class="form-control"
-					id="estrato"   required>
+					id="estrato" required>
 					<option value="">Selecciona una carrera</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -134,7 +142,7 @@
 				<div class="form-check">
 					<input class="form-check-input" type="radio" name="homologado"
 						id="homologadoSi" value="si" required> <label
-						class="form-check-label" for="homologadoSi" > Sí </label>
+						class="form-check-label" for="homologadoSi"> Sí </label>
 				</div>
 				<div class="form-check">
 					<input class="form-check-input" type="radio" name="homologado"
@@ -151,28 +159,7 @@
 			<button type="submit" class="btn btn-primary">Enviar</button>
 		</form>
 	</div>
-	<!-- Carga la biblioteca de jQuery -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<!-- Carga la biblioteca de Popper.js -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<!-- Carga la biblioteca de Bootstrap -->
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-	<table>
-		<tr>
-			<td><strong>Curso</strong></td>
-			<td><strong>Horas</strong></td>
-			<td><strong>Horario</strong></td>
-		</tr>
-
-		<tr>
-			<td>CSS</td>
-			<td>20</td>
-			<td>16:00 - 20:00</td>
-		</tr>
 </body>
 
 </html>
