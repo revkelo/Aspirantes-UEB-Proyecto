@@ -1,11 +1,10 @@
 package controller;
 
-
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
-
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -13,7 +12,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
-
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 104 * 1024 * 10, maxRequestSize = 1024 * 1024 * 100)
 public class ServletGuardar extends HttpServlet {
@@ -23,31 +21,18 @@ public class ServletGuardar extends HttpServlet {
 	public ServletGuardar() {
 //		dao = new ParqueDAO();
 	}
- 
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		PrintWriter salida = resp.getWriter();
-		salida.println("<html>\r\n"
-				+ "<head>\r\n"
-				+ "<meta charset=\"UTF-8\">\r\n"
-				+ "<title>Insert title here</title>\r\n"
-				+ "</head>\r\n"
-				+ "<body>\r\n"
-				+ "\r\n"
-				+ "<table>\r\n"
-				+ "  <thead>\r\n"
-				+ "    <tr>\r\n"
-				+ "      <th>ID</th>\r\n"
-				+ "      <th>Fecha de compra</th>\r\n"
-				+ "      <th>Tipo de pasaporte</th>\r\n"
-				+ "      <th>Costo unitario</th>\r\n"
-				+ "      <th>Cantidad de pasaportes</th>\r\n"
-				+ "      <th>NÃºmero de atracciones</th>\r\n"
-				+ "    </tr>\r\n"
-				+ "  </thead>\r\n"
-				+ "  <tbody>\r\n");
-				
+		salida.println("<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n"
+				+ "<title>Insert title here</title>\r\n" + "</head>\r\n" + "<body>\r\n" + "\r\n" + "<table>\r\n"
+				+ "  <thead>\r\n" + "    <tr>\r\n" + "      <th>ID</th>\r\n" + "      <th>Fecha de compra</th>\r\n"
+				+ "      <th>Tipo de pasaporte</th>\r\n" + "      <th>Costo unitario</th>\r\n"
+				+ "      <th>Cantidad de pasaportes</th>\r\n" + "      <th>NÃºmero de atracciones</th>\r\n"
+				+ "    </tr>\r\n" + "  </thead>\r\n" + "  <tbody>\r\n");
+
 //				
 //				for (int i = 0; i < dao.getList().size(); i++) {
 //					salida.println("    <tr>\r\n"
@@ -61,52 +46,42 @@ public class ServletGuardar extends HttpServlet {
 //							
 //							);
 //				}
-				
-				salida.println(
-						        "\r\n"
-								+ "  </tbody>\r\n"
-								+ "</table>\r\n"
-								+ "\r\n"
-								+ "\r\n"
-								+ "</body>\r\n"
-								+ "</html>");
-				
+
+		salida.println("\r\n" + "  </tbody>\r\n" + "</table>\r\n" + "\r\n" + "\r\n" + "</body>\r\n" + "</html>");
 
 		salida.close();
-		
-		
+
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-			resp.setContentType("text/html");
-			PrintWriter salida = resp.getWriter();
-			salida.println("<html>\r\n"
-					+ "<head>\r\n"
-					+ "<meta charset=\"UTF-8\">\r\n"
-					+ "<title>Insert title here</title>\r\n"
-					+ "</head>\r\n"
-					+ "<body>\r\n"
-					+ "<h1>Error digistaste algo mal</h1>\r\n"
-					+ "</body>\r\n"
-					+ "</html>");
-			
-			Part filepart = req.getPart("foto");
-			String archivo = filepart.getSubmittedFileName();
-			String rootPath = req.getServletContext().getRealPath("/");
-			File archivoGuardar = new File(rootPath + archivo);
-			for (Part parte: req.getParts()) {
-			    parte.write(archivoGuardar.getAbsolutePath());
-			}
-			System.out.println("El archivo se guardó en: " + archivoGuardar.getAbsolutePath());
-			resp.getWriter().print("El archivo subido");
 
+		resp.setContentType("text/html");
+		PrintWriter salida = resp.getWriter();
+		salida.println("<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n"
+				+ "<title>Insert title here</title>\r\n" + "</head>\r\n" + "<body>\r\n"
+				+ "<h1>Error digistaste algo mal</h1>\r\n" + "</body>\r\n" + "</html>");
 
-	salida.close();
-		
-		
-	
+		Part filePart = req.getPart("foto");
+		String fileName = filePart.getSubmittedFileName();
+		String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
+		File uploadDir = new File(uploadPath);
+		if (!uploadDir.exists()) {
+			uploadDir.mkdir();
+		}
+
+		String filePath = uploadDir + File.separator + fileName;
+		File file = new File(filePath);
+		try (InputStream input = filePart.getInputStream()) {
+			Files.copy(input, file.toPath());
+		}
+
+		System.out.println("File uploaded successfully");
+		resp.getWriter().print("El archivo " + fileName + " ha sido subido exitosamente a la siguiente ubicación: "
+				+ file.getAbsolutePath());
+
+		salida.close();
+
 	}
 
 }
