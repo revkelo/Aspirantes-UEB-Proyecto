@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
+import java.time.LocalDate;
+import java.time.Period;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -58,27 +60,52 @@ public class ServletGuardar extends HttpServlet {
 
 		resp.setContentType("text/html");
 		PrintWriter salida = resp.getWriter();
-		salida.println("<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n"
-				+ "<title>Insert title here</title>\r\n" + "</head>\r\n" + "<body>\r\n"
-				+ "<h1>Error digistaste algo mal</h1>\r\n" + "</body>\r\n" + "</html>");
+		
+		
+		String nombre = req.getParameter("nombre");
+		String fecha = req.getParameter("fecha");
 
-		Part filePart = req.getPart("foto");
-		String fileName = filePart.getSubmittedFileName();
-		String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
-		File uploadDir = new File(uploadPath);
-		if (!uploadDir.exists()) {
-			uploadDir.mkdir();
-		}
+		
+	System.out.println(nombre);
 
-		String filePath = uploadDir + File.separator + fileName;
-		File file = new File(filePath);
-		try (InputStream input = filePart.getInputStream()) {
-			Files.copy(input, file.toPath());
-		}
+	String[] partes = fecha.split("-");
+	int anio = Integer.parseInt(partes[0]);
+	int mes = Integer.parseInt(partes[1]);
+	int dia = Integer.parseInt(partes[2]);
 
-		System.out.println("File uploaded successfully");
-		resp.getWriter().print("El archivo " + fileName + " ha sido subido exitosamente a la siguiente ubicaci�n: "
-				+ file.getAbsolutePath());
+
+		
+		Period periodo = Period.between(LocalDate.of(anio, mes, dia), LocalDate.now());
+		String aux = String.valueOf(periodo.getYears());
+		int edad = Integer.parseInt(aux);
+		System.out.println(edad);
+		
+		
+		
+		
+		
+		
+//		salida.println("<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n"
+//				+ "<title>Insert title here</title>\r\n" + "</head>\r\n" + "<body>\r\n"
+//				+ "<h1>Error digistaste algo mal</h1>\r\n" + "</body>\r\n" + "</html>");
+//
+//		Part filePart = req.getPart("foto");
+//		String fileName = filePart.getSubmittedFileName();
+//		String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
+//		File uploadDir = new File(uploadPath);
+//		if (!uploadDir.exists()) {
+//			uploadDir.mkdir();
+//		}
+//
+//		String filePath = uploadDir + File.separator + fileName;
+//		File file = new File(filePath);
+//		try (InputStream input = filePart.getInputStream()) {
+//			Files.copy(input, file.toPath());
+//		}
+//
+//		System.out.println("File uploaded successfully");
+//		resp.getWriter().print("El archivo " + fileName + " ha sido subido exitosamente a la siguiente ubicaci�n: "
+//				+ file.getAbsolutePath());
 
 		salida.close();
 

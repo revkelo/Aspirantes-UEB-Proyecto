@@ -40,12 +40,12 @@
 			method="POST" action="http://localhost:8080/UEB1/guardado">
 			<div class="form-group">
 				<label for="nombre">Nombre completo:</label> <input type="text"
-					class="form-control" id="nombre"
+					class="form-control" id="nombre" name="nombre"
 					placeholder="Ingresa tu nombre completo" required>
 			</div>
 			<div class="form-group">
 				<label for="fecha">Fecha de nacimiento:</label> <input type="date"
-					class="form-control" id="fecha"
+					class="form-control" id="fecha" name="fecha"
 					placeholder="Ingresa tu fecha de nacimiento" required>
 			</div>
 			<div class="form-group">

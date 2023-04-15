@@ -36,6 +36,13 @@ public class ServletTabla extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+	
+
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		PrintWriter salida = resp.getWriter();
 		salida.println("<!DOCTYPE html>\r\n"
@@ -129,20 +136,6 @@ public class ServletTabla extends HttpServlet {
 			);
 		}
 		salida.println("    </tbody>\r\n" + "  </table>\r\n" + "\r\n" + "\r\n" + "</body>\r\n" + "\r\n" + "</html>");
-
-		salida.close();
-	
-
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		resp.setContentType("text/html");
-		PrintWriter salida = resp.getWriter();
-		salida.println(
-				"<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n" + "<title>Insert title here</title>\r\n"
-						+ "</head>\r\n" + "<body>\r\n" + "<h1>Tabla</h1>\r\n" + "</body>\r\n" + "</html>");
 
 		salida.close();
 
