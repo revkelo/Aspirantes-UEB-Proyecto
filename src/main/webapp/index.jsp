@@ -26,7 +26,7 @@
 	<div class="container">
 		<div class="row justify-content-end">
 			<div class="col-4 text-right">
-				<form action="login.jsp" method="post">
+				<form action="login.jsp" method="POST">
 					<input type="submit" class="btn btn-primary" value="Administrador">
 
 				</form>
