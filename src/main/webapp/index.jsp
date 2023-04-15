@@ -10,8 +10,8 @@
 <!-- Carga la biblioteca de Bootstrap -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	  <script src="script.js"></script>
-	
+<script src="script.js"></script>
+
 </head>
 
 <body>
@@ -27,7 +27,8 @@
 	</div>
 	<div class="container">
 		<h2>Formulario de Registro</h2>
-		<form>
+		<form enctype="multipart/form-data" name="Formulario ServeletGuardar"
+			method="POST" action="http://localhost:8080/UEB1/guardado">
 			<div class="form-group">
 				<label for="nombre">Nombre completo:</label> <input type="text"
 					class="form-control" id="nombre"
@@ -142,8 +143,10 @@
 			</div>
 			<div class="form-group">
 				<label for="foto">Subir foto:</label> <input type="file"
-					class="form-control-file" id="foto">
+					class="form-control-file" name="foto" id="foto">
 			</div>
+
+
 			<button type="submit" class="btn btn-primary">Enviar</button>
 		</form>
 	</div>

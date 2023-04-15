@@ -1,17 +1,21 @@
 package controller;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
+import java.nio.file.Files;
+
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
+
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 104 * 1024 * 10, maxRequestSize = 1024 * 1024 * 100)
 public class ServletGuardar extends HttpServlet {
 
 //	private ParqueDAO dao;
@@ -87,6 +91,16 @@ public class ServletGuardar extends HttpServlet {
 					+ "<h1>Error digistaste algo mal</h1>\r\n"
 					+ "</body>\r\n"
 					+ "</html>");
+			
+			Part filepart = req.getPart("foto");
+			String archivo = filepart.getSubmittedFileName();
+			String rootPath = req.getServletContext().getRealPath("/");
+			File archivoGuardar = new File(rootPath + archivo);
+			for (Part parte: req.getParts()) {
+			    parte.write(archivoGuardar.getAbsolutePath());
+			}
+			System.out.println("El archivo se guardó en: " + archivoGuardar.getAbsolutePath());
+			resp.getWriter().print("El archivo subido");
 
 
 	salida.close();
