@@ -32,24 +32,24 @@
 			<div class="form-group">
 				<label for="nombre">Nombre completo:</label> <input type="text"
 					class="form-control" id="nombre"
-					placeholder="Ingresa tu nombre completo">
+					placeholder="Ingresa tu nombre completo" required>
 			</div>
 			<div class="form-group">
 				<label for="fecha">Fecha de nacimiento:</label> <input type="date"
 					class="form-control" id="fecha"
-					placeholder="Ingresa tu fecha de nacimiento">
+					placeholder="Ingresa tu fecha de nacimiento" required>
 			</div>
 			<div class="form-group">
 				<label for="colegio">Colegio donde se graduó:</label> <input
 					type="text" class="form-control" id="colegio"
-					placeholder="Ingresa el nombre de tu colegio">
+					placeholder="Ingresa el nombre de tu colegio" required>
 			</div>
 			<div class="form-group">
 
 
 
 				<label for="carrera">Selecciona tu carrera:</label> <select
-					id="carrera">
+					id="carrera" required>
 					<option value="">Selecciona una carrera</option>
 					<option value="Arquitectura">Arquitectura</option>
 					<option value="Arte Dramático">Arte Dramático</option>
@@ -109,7 +109,7 @@
 					<option value="Optometría">Optometría</option>
 					<option value="Química Farmacéutica">Química Farmacéutica</option>
 
-				</select>
+				</select >
 				<p>
 					El costo de tu carrera es: <span id="costo"></span>
 				</p>
@@ -119,7 +119,7 @@
 			</div>
 			<div class="form-group">
 				<label for="estrato">Estrato:</label> <select class="form-control"
-					id="estrato">
+					id="estrato"   required>
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
@@ -132,18 +132,18 @@
 				<label for="homologado">Homologado:</label>
 				<div class="form-check">
 					<input class="form-check-input" type="radio" name="homologado"
-						id="homologadoSi" value="si"> <label
-						class="form-check-label" for="homologadoSi"> Sí </label>
+						id="homologadoSi" value="si" required> <label
+						class="form-check-label" for="homologadoSi" > Sí </label>
 				</div>
 				<div class="form-check">
 					<input class="form-check-input" type="radio" name="homologado"
-						id="homologadoNo" value="no"> <label
+						id="homologadoNo" value="no" required> <label
 						class="form-check-label" for="homologadoNo"> No </label>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="foto">Subir foto:</label> <input type="file"
-					class="form-control-file" name="foto" id="foto">
+					class="form-control-file" name="foto" id="foto" required>
 			</div>
 
 
