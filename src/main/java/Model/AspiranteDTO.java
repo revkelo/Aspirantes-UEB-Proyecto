@@ -3,24 +3,35 @@ package Model;
 public class AspiranteDTO {
 	private String nombre;
 	private String fecha;
+	private String edad;
 	private String colegio;
 	private String carrera;
 	private String estrato;
 	private String homologado;
-	private int costo;
+	private String costo;
 
-	public AspiranteDTO(String nombre, String fecha, String colegio, String carrera, String estrato,
-			String homologado) {
 
+
+
+	
+
+	public AspiranteDTO(String nombre, String fecha, String edad, String colegio, String carrera, String estrato,
+			String homologado, String costo) {
+		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
+		this.edad = edad;
 		this.colegio = colegio;
 		this.carrera = carrera;
 		this.estrato = estrato;
 		this.homologado = homologado;
+		this.costo = costo;
 	}
 
-	
+
+
+
+
 
 	/**
 	 * @return the nombre
@@ -28,6 +39,9 @@ public class AspiranteDTO {
 	public String getNombre() {
 		return nombre;
 	}
+
+
+
 
 
 
@@ -133,7 +147,7 @@ public class AspiranteDTO {
 	/**
 	 * @return the costo
 	 */
-	public int getCosto() {
+	public String getCosto() {
 		return costo;
 	}
 
@@ -142,16 +156,40 @@ public class AspiranteDTO {
 	/**
 	 * @param costo the costo to set
 	 */
-	public void setCosto(int costo) {
+	public void setCosto(String costo) {
 		this.costo = costo;
 	}
 
 
 
+	/**
+	 * @return the edad
+	 */
+	public String getEdad() {
+		return edad;
+	}
+
+
+
+
+
+
+	/**
+	 * @param edad the edad to set
+	 */
+	public void setEdad(String edad) {
+		this.edad = edad;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Estudiante" + "nombre=" + nombre + ", fecha=" + fecha + ", colegio=" + colegio + ", carrera=" + carrera
-				+ ", estrato=" + estrato + ", homologado=" + homologado + "]";
+		return "AspiranteDTO [nombre=" + nombre + ", fecha=" + fecha + ", edad=" + edad + ", colegio=" + colegio
+				+ ", carrera=" + carrera + ", estrato=" + estrato + ", homologado=" + homologado + ", costo=" + costo
+				+ "]";
 	}
+
+
+
 
 }

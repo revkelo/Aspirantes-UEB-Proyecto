@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -8,17 +9,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Carga la biblioteca de Bootstrap -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	  <script src="script.js"></script>
-	
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+	crossorigin="anonymous"></script>
+
+<script src="script.js"></script>
+
 </head>
 
 <body>
 	<div class="container">
 		<div class="row justify-content-end">
 			<div class="col-4 text-right">
-				<form action="login.jsp" method="post">
+				<form action="login.jsp" method="POST">
 					<input type="submit" class="btn btn-primary" value="Administrador">
 
 				</form>
@@ -27,28 +36,29 @@
 	</div>
 	<div class="container">
 		<h2>Formulario de Registro</h2>
-		<form>
+		<form enctype="multipart/form-data" name="Formulario ServeletGuardar"
+			method="POST" action="http://localhost:8080/UEB1/guardado">
 			<div class="form-group">
 				<label for="nombre">Nombre completo:</label> <input type="text"
-					class="form-control" id="nombre"
-					placeholder="Ingresa tu nombre completo">
+					class="form-control" id="nombre" name="nombre"
+					placeholder="Ingresa tu nombre completo" required>
 			</div>
 			<div class="form-group">
 				<label for="fecha">Fecha de nacimiento:</label> <input type="date"
-					class="form-control" id="fecha"
-					placeholder="Ingresa tu fecha de nacimiento">
+					class="form-control" id="fecha" name="fecha"
+					placeholder="Ingresa tu fecha de nacimiento" required>
 			</div>
 			<div class="form-group">
 				<label for="colegio">Colegio donde se graduó:</label> <input
-					type="text" class="form-control" id="colegio"
-					placeholder="Ingresa el nombre de tu colegio">
+					type="text" class="form-control" id="colegio" name="colegio"
+					placeholder="Ingresa el nombre de tu colegio" required>
 			</div>
 			<div class="form-group">
 
 
 
 				<label for="carrera">Selecciona tu carrera:</label> <select
-					id="carrera">
+					id="carrera" name="carrera" required>
 					<option value="">Selecciona una carrera</option>
 					<option value="Arquitectura">Arquitectura</option>
 					<option value="Arte Dramático">Arte Dramático</option>
@@ -118,57 +128,39 @@
 			</div>
 			<div class="form-group">
 				<label for="estrato">Estrato:</label> <select class="form-control"
-					id="estrato">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-					<option>6</option>
+					id="estrato" name="estrato" required>
+					<option value="">Selecciona una carrera</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="homologado">Homologado:</label>
 				<div class="form-check">
 					<input class="form-check-input" type="radio" name="homologado"
-						id="homologadoSi" value="si"> <label
+						id="homologadoSi" value="si" required> <label
 						class="form-check-label" for="homologadoSi"> Sí </label>
 				</div>
 				<div class="form-check">
 					<input class="form-check-input" type="radio" name="homologado"
-						id="homologadoNo" value="no"> <label
+						id="homologadoNo" value="no" required> <label
 						class="form-check-label" for="homologadoNo"> No </label>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="foto">Subir foto:</label> <input type="file"
-					class="form-control-file" id="foto">
+					class="form-control-file" name="foto" id="foto" required>
 			</div>
+
+
 			<button type="submit" class="btn btn-primary">Enviar</button>
 		</form>
 	</div>
-	<!-- Carga la biblioteca de jQuery -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<!-- Carga la biblioteca de Popper.js -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<!-- Carga la biblioteca de Bootstrap -->
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-	<table>
-		<tr>
-			<td><strong>Curso</strong></td>
-			<td><strong>Horas</strong></td>
-			<td><strong>Horario</strong></td>
-		</tr>
-
-		<tr>
-			<td>CSS</td>
-			<td>20</td>
-			<td>16:00 - 20:00</td>
-		</tr>
 </body>
 
 </html>
