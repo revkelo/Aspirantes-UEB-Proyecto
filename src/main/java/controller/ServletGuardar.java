@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import Model.AspiranteDAO;
 import Model.AspiranteDTO;
@@ -57,23 +58,63 @@ public class ServletGuardar extends HttpServlet {
 
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
-
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		try {
 
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		ArrayList<AspiranteDTO> lista;
-		if (req.getSession().getAttribute("lista") == null) {
-			lista = new ArrayList<>();
+		ArrayList<AspiranteDTO> kevin;
+		if (req.getSession().getAttribute("kevin") == null) {
+			kevin = new ArrayList<>();
 		} else {
-			lista = (ArrayList) req.getSession().getAttribute("lista");
+			kevin = (ArrayList) req.getSession().getAttribute("kevin");
 		}
 
-
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		String nombre = req.getParameter("nombre");
 		String fecha = req.getParameter("fecha");
-		System.out.println(fecha);
 		String colegio = req.getParameter("colegio");
 		String carrera = req.getParameter("carrera");
 		String estrato = req.getParameter("estrato");
@@ -93,7 +134,7 @@ public class ServletGuardar extends HttpServlet {
 			costo = "$8.958.000";
 		} else if (carrera.equals("Arte Dramatico") || carrera.equals("Artes Plasticas")) {
 			costo = "$7.350.000";
-		} else if (carrera.equals("Dise�o Industrial") || carrera.equals("Diseno de Comunicación")) {
+		} else if (carrera.equals("Dise�o Industrial") || carrera.equals("Diseno de Comunicación")) {
 			costo = "$8.958.000";
 		} else if (carrera.equals("Formación Musical")) {
 			costo = "$8.336.000";
@@ -156,8 +197,8 @@ public class ServletGuardar extends HttpServlet {
 		} else {
 			costo = "";
 		}
-System.out.println(costo);
-		lista.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo+""));
+
+		kevin.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo));
 
 		System.out.println(nombre);
 		System.out.println(fecha);
@@ -167,23 +208,35 @@ System.out.println(costo);
 		System.out.println(estrato);
 		System.out.println(homologado);
 		System.out.println(costo);
-
+		
+		
 		Part filePart = req.getPart("foto");
 		String fileName = filePart.getSubmittedFileName();
 		String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
 		File uploadDir = new File(uploadPath);
 		if (!uploadDir.exists()) {
-			uploadDir.mkdir();
+		    uploadDir.mkdir();        
 		}
 
-		String filePath = uploadDir + File.separator + fileName;
+		int i = 1;
+		String filePath = uploadDir + File.separator + "imagen" + i + ".jpg";
 		File file = new File(filePath);
-		try (InputStream input = filePart.getInputStream()) {
-			Files.copy(input, file.toPath());
+		while (file.exists()) {
+		    i++;
+		    filePath = uploadDir + File.separator + "imagen" + i + ".jpg";
+		    file = new File(filePath);
+		    
 		}
 
-		System.out.println("File uploaded successfully" + "El archivo " + fileName
-				+ " ha sido subido exitosamente a la siguiente ubicaci�n: " + file.getAbsolutePath());
+		try (InputStream input = filePart.getInputStream()) {
+		    Files.copy(input, file.toPath());
+		    System.out.println("File uploaded successfully. The file " + fileName
+		            + " has been uploaded to the following location: " + file.getAbsolutePath());
+		    System.out.println(uploadPath +"\n"+ filePath +"\n"+ file.getAbsolutePath());
+		} catch (Exception e) {
+		    // TODO: handle exception
+		}
+		
 
 		out.println("<html><body onload=\"showLoginError()\">  <h1>Guardado</h1> </body></html>");
 		resp.setHeader("Refresh", "0.5; URL=index.jsp");
@@ -203,9 +256,9 @@ System.out.println(costo);
 		
 		
 		
-		req.getSession().setAttribute("lista",lista);
+		req.getSession().setAttribute("kevin",kevin);
 		
-	
+		req.getRequestDispatcher("admin.jsp").forward(req, resp);
 		
 		
 		
@@ -219,9 +272,9 @@ System.out.println(costo);
 		
 		out.close();
 
-		System.out.println(lista.size() + "  El tamaño del la lista ");
-		System.out.println(lista.toString());
-
+		System.out.println(kevin.size() + "  El tamaño del la lista ");
+		System.out.println(kevin.toString());
+	
 	}
 
 	@Override
@@ -234,6 +287,28 @@ System.out.println(costo);
 		salida.close();
 
 		super.doDelete(req, resp);
+	}
+	public void borrar() {
+		 String rutaCarpeta = "C:/ruta/a/la/carpeta";
+
+	        // Crear objeto de File para la carpeta
+	        File carpeta = new File(rutaCarpeta);
+
+	        // Comprobar si la carpeta existe
+	        if (carpeta.exists()) {
+	            // Obtener la lista de archivos en la carpeta
+	            File[] archivos = carpeta.listFiles();
+
+	            // Borrar cada archivo en la carpeta
+	            for (File archivo : archivos) {
+	                if (!archivo.isDirectory()) {
+	                    archivo.delete();
+	                }
+	            }
+	        } else {
+	            System.out.println("La carpeta no existe.");
+	        }
+	    
 	}
 
 }
