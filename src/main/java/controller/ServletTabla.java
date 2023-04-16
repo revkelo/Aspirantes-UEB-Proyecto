@@ -18,10 +18,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class ServletTabla extends HttpServlet {
 
-	private AspiranteDAO dao;
+	private ServletGuardar serv;
 
 	public ServletTabla() {
-		dao = new AspiranteDAO();
+		serv = new ServletGuardar();
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -127,6 +127,8 @@ public class ServletTabla extends HttpServlet {
 				"<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n" + "<title>Insert title here</title>\r\n"
 						+ "</head>\r\n" + "<body>\r\n" + "<h1>actualizar</h1>\r\n" + "</body>\r\n" + "</html>");
 
+		
+		System.out.println(serv.getUrl());
 		salida.close();
 	}
 

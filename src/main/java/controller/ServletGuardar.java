@@ -21,6 +21,8 @@ import jakarta.servlet.http.Part;
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 104 * 1024 * 10, maxRequestSize = 1024 * 1024 * 100)
 public class ServletGuardar extends HttpServlet {
 
+	private String url;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
@@ -69,7 +71,6 @@ public class ServletGuardar extends HttpServlet {
 		} else {
 			lista = (ArrayList) req.getSession().getAttribute("lista");
 		}
-
 
 		String nombre = req.getParameter("nombre");
 		String fecha = req.getParameter("fecha");
@@ -156,8 +157,8 @@ public class ServletGuardar extends HttpServlet {
 		} else {
 			costo = "";
 		}
-System.out.println(costo);
-		lista.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo+""));
+		System.out.println(costo);
+		lista.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo + ""));
 
 		System.out.println(nombre);
 		System.out.println(fecha);
@@ -185,38 +186,13 @@ System.out.println(costo);
 		System.out.println("File uploaded successfully" + "El archivo " + fileName
 				+ " ha sido subido exitosamente a la siguiente ubicaci�n: " + file.getAbsolutePath());
 
+		url = "" + file.getParentFile();
+
 		out.println("<html><body onload=\"showLoginError()\">  <h1>Guardado</h1> </body></html>");
 		resp.setHeader("Refresh", "0.5; URL=index.jsp");
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		req.getSession().setAttribute("lista",lista);
-		
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		req.getSession().setAttribute("lista", lista);
+
 		out.close();
 
 		System.out.println(lista.size() + "  El tamaño del la lista ");
@@ -234,6 +210,20 @@ System.out.println(costo);
 		salida.close();
 
 		super.doDelete(req, resp);
+	}
+
+	/**
+	 * @return the url
+	 */
+	public String getUrl() {
+		return url;
+	}
+
+	/**
+	 * @param url the url to set
+	 */
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }

@@ -19,9 +19,7 @@ public class ServletAdmin extends HttpServlet {
 	private static final String ADMIN_USERNAME = "admin";
 	private static final String ADMIN_PASSWORD = "admin";
 
-	public ServletAdmin() {
 
-	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
