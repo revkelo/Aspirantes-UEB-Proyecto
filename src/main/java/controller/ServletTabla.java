@@ -1,28 +1,20 @@
 package controller;
 
+
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-
-import Model.AspiranteDAO;
 import Model.AspiranteDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+
 public class ServletTabla extends HttpServlet {
 
-	private ServletGuardar serv;
 
-	public ServletTabla() {
-		serv = new ServletGuardar();
-	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -51,6 +43,11 @@ public class ServletTabla extends HttpServlet {
 		System.out.println();
 		PrintWriter salida = resp.getWriter();
 		
+		String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
+        File uploadDir = new File(uploadPath);
+    
+       String Url = uploadDir.getAbsolutePath();
+		
 		
 		salida.println("<!DOCTYPE html>\r\n" 
 		+ "<html>\r\n" + "\r\n" 
@@ -76,6 +73,7 @@ public class ServletTabla extends HttpServlet {
 				+ "	<table class=\"table table-bordered border-primary\">\r\n" + "		<thead>\r\n"
 				+ "			<tr>\r\n"
 				+ "				<th>ID</th>\r\n" 
+				+ "				<th>Imagen</th>\r\n" 
 				+ "				<th>Nombre</th>\r\n" 
 				+ "				<th>Fecha</th>\r\n"
 				+ "				<th>Edad</th>\r\n" 
@@ -91,6 +89,8 @@ public class ServletTabla extends HttpServlet {
 		for (int i = 0; i < lista.size(); i++) {
 			salida.println("    <tr>\r\n" 
 					+ "      <td>" + i + "</td>\r\n" 
+					
+					
 
 		+ "      <td>" + lista.get(i).getNombre() + "</td>\r\n" 
 		
@@ -128,7 +128,16 @@ public class ServletTabla extends HttpServlet {
 						+ "</head>\r\n" + "<body>\r\n" + "<h1>actualizar</h1>\r\n" + "</body>\r\n" + "</html>");
 
 		
-		System.out.println(serv.getUrl());
+		
+		
+		
+	
+        
+    
+		
+		
+		
+		
 		salida.close();
 	}
 
