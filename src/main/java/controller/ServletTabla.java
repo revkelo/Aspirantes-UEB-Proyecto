@@ -3,10 +3,14 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
 import Model.AspiranteDAO;
+import Model.AspiranteDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -42,10 +46,11 @@ public class ServletTabla extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
+		System.out.println("----------------------------------------------------------------------------");
+		System.out.println();
 		PrintWriter salida = resp.getWriter();
-		dao.agregarAspirante("asdas", "", "", "", "", "", "", 0);
-		System.out.println(dao.getList().size() + "  El tamaño del la lista ");
-		System.out.println(dao.getList().get(0).getNombre());
+		
+		
 		salida.println("<!DOCTYPE html>\r\n" + "<html>\r\n" + "\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\" />\r\n"
 				+ "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n"
 				+ "<title>Formularios con Bootstrap</title>\r\n" + "<!-- Agrega los estilos de Bootstrap -->\r\n"
@@ -121,10 +126,12 @@ public class ServletTabla extends HttpServlet {
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		PrintWriter salida = resp.getWriter();
+	ArrayList<AspiranteDTO> kevin = (ArrayList<AspiranteDTO>)req.getSession().getAttribute("kevin");
+	System.out.println(kevin.get(0).getNombre());
 		salida.println(
 				"<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n" + "<title>Insert title here</title>\r\n"
 						+ "</head>\r\n" + "<body>\r\n" + "<h1>Eliminado</h1>\r\n" + "</body>\r\n" + "</html>");
-		System.out.println(dao.getList().size()+" Tamaño de la lista momento ");
+
 		salida.close();
 	}
 

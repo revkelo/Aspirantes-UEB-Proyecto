@@ -7,8 +7,10 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 
 import Model.AspiranteDAO;
+import Model.AspiranteDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
@@ -18,12 +20,6 @@ import jakarta.servlet.http.Part;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 104 * 1024 * 10, maxRequestSize = 1024 * 1024 * 100)
 public class ServletGuardar extends HttpServlet {
-
-	private AspiranteDAO dao;
-
-	public ServletGuardar() {
-		dao = new AspiranteDAO();
-	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -53,7 +49,6 @@ public class ServletGuardar extends HttpServlet {
 		salida.println("\r\n" + "  </tbody>\r\n" + "</table>\r\n" + "\r\n" + "\r\n" + "</body>\r\n" + "</html>");
 
 		salida.close();
-	
 
 	}
 
@@ -62,8 +57,61 @@ public class ServletGuardar extends HttpServlet {
 
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
-	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		try {
 
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		ArrayList<AspiranteDTO> kevin;
+		if (req.getSession().getAttribute("kevin") == null) {
+			kevin = new ArrayList<>();
+		} else {
+			kevin = (ArrayList) req.getSession().getAttribute("kevin");
+		}
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		String nombre = req.getParameter("nombre");
 		String fecha = req.getParameter("fecha");
 		String colegio = req.getParameter("colegio");
@@ -83,9 +131,9 @@ public class ServletGuardar extends HttpServlet {
 
 		if (carrera.equals("Arquitectura")) {
 			costo = "$8.958.000";
-		} else if (carrera.equals("Arte Dramático") || carrera.equals("Artes Plásticas")) {
+		} else if (carrera.equals("Arte Dramatico") || carrera.equals("Artes Plasticas")) {
 			costo = "$7.350.000";
-		} else if (carrera.equals("Diseño Industrial") || carrera.equals("Diseño de Comunicación")) {
+		} else if (carrera.equals("Dise�o Industrial") || carrera.equals("Diseno de Comunicación")) {
 			costo = "$8.958.000";
 		} else if (carrera.equals("Formación Musical")) {
 			costo = "$8.336.000";
@@ -149,6 +197,8 @@ public class ServletGuardar extends HttpServlet {
 			costo = "";
 		}
 
+		kevin.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo));
+
 		System.out.println(nombre);
 		System.out.println(fecha);
 		System.out.println(edad);
@@ -157,8 +207,7 @@ public class ServletGuardar extends HttpServlet {
 		System.out.println(estrato);
 		System.out.println(homologado);
 		System.out.println(costo);
-		
-		
+
 		Part filePart = req.getPart("foto");
 		String fileName = filePart.getSubmittedFileName();
 		String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
@@ -173,14 +222,32 @@ public class ServletGuardar extends HttpServlet {
 			Files.copy(input, file.toPath());
 		}
 
-		System.out.println("File uploaded successfully"+"El archivo " + fileName + " ha sido subido exitosamente a la siguiente ubicaci�n: "
-				+ file.getAbsolutePath() );
-		
-		
-		dao.agregarAspirante(nombre, fecha, edad+"", colegio, carrera, estrato, homologado, edad);
-		
+		System.out.println("File uploaded successfully" + "El archivo " + fileName
+				+ " ha sido subido exitosamente a la siguiente ubicaci�n: " + file.getAbsolutePath());
+
 		out.println("<html><body onload=\"showLoginError()\">  <h1>Guardado</h1> </body></html>");
 		resp.setHeader("Refresh", "0.5; URL=index.jsp");
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		req.getSession().setAttribute("kevin",kevin);
+		
+		req.getRequestDispatcher("admin.jsp").forward(req, resp);
+		
+		
 		
 		
 		
@@ -191,11 +258,9 @@ public class ServletGuardar extends HttpServlet {
 		
 		
 		out.close();
-		
-		
 
-		System.out.println(dao.getList().size()+"  El tamaño del la lista ");
-
+		System.out.println(kevin.size() + "  El tamaño del la lista ");
+		System.out.println(kevin.toString());
 
 	}
 
@@ -210,8 +275,5 @@ public class ServletGuardar extends HttpServlet {
 
 		super.doDelete(req, resp);
 	}
-	
-	
-	
 
 }

@@ -8,7 +8,7 @@ public class AspiranteDTO {
 	private String carrera;
 	private String estrato;
 	private String homologado;
-	private int costo;
+	private String costo;
 
 
 
@@ -16,7 +16,7 @@ public class AspiranteDTO {
 	
 
 	public AspiranteDTO(String nombre, String fecha, String edad, String colegio, String carrera, String estrato,
-			String homologado, int costo) {
+			String homologado, String costo) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
@@ -147,7 +147,7 @@ public class AspiranteDTO {
 	/**
 	 * @return the costo
 	 */
-	public int getCosto() {
+	public String getCosto() {
 		return costo;
 	}
 
@@ -156,7 +156,7 @@ public class AspiranteDTO {
 	/**
 	 * @param costo the costo to set
 	 */
-	public void setCosto(int costo) {
+	public void setCosto(String costo) {
 		this.costo = costo;
 	}
 
@@ -182,14 +182,14 @@ public class AspiranteDTO {
 	}
 
 
-
-
-
-
 	@Override
 	public String toString() {
-		return "Estudiante" + "nombre=" + nombre + ", fecha=" + fecha + ", colegio=" + colegio + ", carrera=" + carrera
-				+ ", estrato=" + estrato + ", homologado=" + homologado + "]";
+		return "AspiranteDTO [nombre=" + nombre + ", fecha=" + fecha + ", edad=" + edad + ", colegio=" + colegio
+				+ ", carrera=" + carrera + ", estrato=" + estrato + ", homologado=" + homologado + ", costo=" + costo
+				+ "]";
 	}
+
+
+
 
 }

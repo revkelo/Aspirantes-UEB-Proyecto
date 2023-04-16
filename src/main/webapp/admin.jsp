@@ -133,7 +133,7 @@
 					</div>
 					<div class="card-body">
 						<form class="form" action="/UEB1/tabla" method="post">
-							<input type="hidden" name="_method" value="DELETE">
+							<input type="hidden" name="_method"  value= "DELETE">
 							<div class="form-group">
 								<label for="inputIdEliminar">ID:</label> <input type="text"
 									class="form-control" id="inputIdEliminar" name="id">
