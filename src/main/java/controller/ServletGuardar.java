@@ -57,68 +57,27 @@ public class ServletGuardar extends HttpServlet {
 
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		try {
 
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		ArrayList<AspiranteDTO> kevin;
-		if (req.getSession().getAttribute("kevin") == null) {
-			kevin = new ArrayList<>();
+		ArrayList<AspiranteDTO> lista;
+		if (req.getSession().getAttribute("lista") == null) {
+			lista = new ArrayList<>();
 		} else {
-			kevin = (ArrayList) req.getSession().getAttribute("kevin");
+			lista = (ArrayList) req.getSession().getAttribute("lista");
 		}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		String nombre = req.getParameter("nombre");
 		String fecha = req.getParameter("fecha");
 		String colegio = req.getParameter("colegio");
 		String carrera = req.getParameter("carrera");
 		String estrato = req.getParameter("estrato");
 		String homologado = req.getParameter("homologado");
-
+System.out.println(fecha);
 		String[] partes = fecha.split("-");
 		int anio = Integer.parseInt(partes[0]);
 		int mes = Integer.parseInt(partes[1]);
@@ -133,7 +92,7 @@ public class ServletGuardar extends HttpServlet {
 			costo = "$8.958.000";
 		} else if (carrera.equals("Arte Dramatico") || carrera.equals("Artes Plasticas")) {
 			costo = "$7.350.000";
-		} else if (carrera.equals("Dise�o Industrial") || carrera.equals("Diseno de Comunicación")) {
+		} else if (carrera.equals("Dise�o Industrial") || carrera.equals("Diseno de Comunicación")) {
 			costo = "$8.958.000";
 		} else if (carrera.equals("Formación Musical")) {
 			costo = "$8.336.000";
@@ -197,7 +156,7 @@ public class ServletGuardar extends HttpServlet {
 			costo = "";
 		}
 
-		kevin.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo));
+		lista.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo));
 
 		System.out.println(nombre);
 		System.out.println(fecha);
@@ -243,9 +202,9 @@ public class ServletGuardar extends HttpServlet {
 		
 		
 		
-		req.getSession().setAttribute("kevin",kevin);
+		req.getSession().setAttribute("lista",lista);
 		
-		req.getRequestDispatcher("admin.jsp").forward(req, resp);
+	
 		
 		
 		
@@ -259,8 +218,8 @@ public class ServletGuardar extends HttpServlet {
 		
 		out.close();
 
-		System.out.println(kevin.size() + "  El tamaño del la lista ");
-		System.out.println(kevin.toString());
+		System.out.println(lista.size() + "  El tamaño del la lista ");
+		System.out.println(lista.toString());
 
 	}
 
