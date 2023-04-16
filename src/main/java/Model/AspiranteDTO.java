@@ -3,6 +3,7 @@ package Model;
 public class AspiranteDTO {
 	private String nombre;
 	private String fecha;
+	private String edad;
 	private String colegio;
 	private String carrera;
 	private String estrato;
@@ -10,11 +11,16 @@ public class AspiranteDTO {
 	private int costo;
 
 
-	public AspiranteDTO(String nombre, String fecha, String colegio, String carrera, String estrato, String homologado,
-			int costo) {
+
+
+	
+
+	public AspiranteDTO(String nombre, String fecha, String edad, String colegio, String carrera, String estrato,
+			String homologado, int costo) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
+		this.edad = edad;
 		this.colegio = colegio;
 		this.carrera = carrera;
 		this.estrato = estrato;
@@ -22,7 +28,10 @@ public class AspiranteDTO {
 		this.costo = costo;
 	}
 
-	
+
+
+
+
 
 	/**
 	 * @return the nombre
@@ -150,6 +159,30 @@ public class AspiranteDTO {
 	public void setCosto(int costo) {
 		this.costo = costo;
 	}
+
+
+
+	/**
+	 * @return the edad
+	 */
+	public String getEdad() {
+		return edad;
+	}
+
+
+
+
+
+
+	/**
+	 * @param edad the edad to set
+	 */
+	public void setEdad(String edad) {
+		this.edad = edad;
+	}
+
+
+
 
 
 

@@ -50,7 +50,7 @@
 			</div>
 			<div class="form-group">
 				<label for="colegio">Colegio donde se graduó:</label> <input
-					type="text" class="form-control" id="colegio"
+					type="text" class="form-control" id="colegio" name="colegio"
 					placeholder="Ingresa el nombre de tu colegio" required>
 			</div>
 			<div class="form-group">
@@ -58,7 +58,7 @@
 
 
 				<label for="carrera">Selecciona tu carrera:</label> <select
-					id="carrera" required>
+					id="carrera" name="carrera" required>
 					<option value="">Selecciona una carrera</option>
 					<option value="Arquitectura">Arquitectura</option>
 					<option value="Arte Dramático">Arte Dramático</option>
@@ -128,7 +128,7 @@
 			</div>
 			<div class="form-group">
 				<label for="estrato">Estrato:</label> <select class="form-control"
-					id="estrato" required>
+					id="estrato" name="estrato" required>
 					<option value="">Selecciona una carrera</option>
 					<option value="1">1</option>
 					<option value="2">2</option>

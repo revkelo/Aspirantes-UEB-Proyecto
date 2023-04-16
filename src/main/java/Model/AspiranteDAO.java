@@ -27,10 +27,10 @@ public class AspiranteDAO {
 		return -1;
 	}
 
-	public void agregarAspirante(String nombre, String fecha, String colegio, String carrera, String estrato,
-			String homologado,int costo) {
+	public void agregarAspirante(String nombre, String fecha, String edad, String colegio, String carrera, String estrato,
+			String homologado, int costo) {
 
-		list.add(new AspiranteDTO(nombre, fecha, colegio, carrera, estrato, homologado,costo));
+		list.add(new AspiranteDTO(nombre, fecha,edad, colegio, carrera, estrato, homologado,costo));
 
 	}
 
