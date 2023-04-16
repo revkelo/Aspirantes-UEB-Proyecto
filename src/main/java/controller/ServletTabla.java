@@ -46,7 +46,7 @@ public class ServletTabla extends HttpServlet {
 		String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
         File uploadDir = new File(uploadPath);
     
-       String Url = uploadDir.getAbsolutePath();
+       String url = uploadDir.getAbsolutePath();
 		
 		
 		salida.println("<!DOCTYPE html>\r\n" 
@@ -88,11 +88,10 @@ public class ServletTabla extends HttpServlet {
 
 		for (int i = 0; i < lista.size(); i++) {
 			salida.println("    <tr>\r\n" 
-					+ "      <td>" + i + "</td>\r\n" 
+					+ "      <td>" + i + "</td>\r\n"); 
 					
-					
-
-		+ "      <td>" + lista.get(i).getNombre() + "</td>\r\n" 
+			salida.println("  <td><img src="+"'"+url+i+".jpg"+"'"+"></td>"); 
+			salida.println( "      <td>" + lista.get(i).getNombre() + "</td>\r\n" 
 		
 					+ "      <td>"
 					+ lista.get(i).getFecha() + "</td>\r\n" 
