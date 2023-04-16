@@ -4,7 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.io.FileWriter;
 import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Base64;
+
+import javax.imageio.ImageIO;
+
+import org.apache.commons.io.IOUtils;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -12,9 +20,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import java.awt.image.BufferedImage;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 104 * 1024 * 10, maxRequestSize = 1024 * 1024 * 100)
 public class ServletGuardar extends HttpServlet {
+
+private BufferedImage image;
 
 //	private ParqueDAO dao;
 
@@ -68,10 +79,12 @@ public class ServletGuardar extends HttpServlet {
 		File uploadDir = new File(uploadPath);
 		if (!uploadDir.exists()) {
 			uploadDir.mkdir();
+		
 		}
 
 		String filePath = uploadDir + File.separator + fileName;
 		File file = new File(filePath);
+		String aux = file.getAbsolutePath();
 		try (InputStream input = filePart.getInputStream()) {
 			Files.copy(input, file.toPath());
 		}
@@ -79,7 +92,28 @@ public class ServletGuardar extends HttpServlet {
 		System.out.println("File uploaded successfully");
 		resp.getWriter().print("El archivo " + fileName + " ha sido subido exitosamente a la siguiente ubicación: "
 				+ file.getAbsolutePath());
+			
+		try (InputStream input = filePart.getInputStream()) {
+		    Files.copy(input, Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
+		}
 
+		// Escribir la ruta de la imagen en el archivo CSV
+		String csvFilePath = "C:\\Users\\nicol\\Desktop\\datos.csv";
+		try (FileWriter writer = new FileWriter(csvFilePath)) {
+		    writer.write(filePath);
+		}
+
+		// Cargar la imagen desde la ruta almacenada en el archivo CSV
+		try {
+		    String imagePath =file.getAbsolutePath() ;
+		    image = ImageIO.read(new File(imagePath));
+		    // Mostrar la imagen en tu interfaz de usuario
+		} catch (IOException e) {
+		    // Manejar la excepción
+		}
+		
+		
+		
 		salida.close();
 
 	}
