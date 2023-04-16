@@ -170,24 +170,34 @@ public class ServletGuardar extends HttpServlet {
 		System.out.println(costo);
 
 		Part filePart = req.getPart("foto");
-		String fileName = filePart.getSubmittedFileName();
-		String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
-		File uploadDir = new File(uploadPath);
-		if (!uploadDir.exists()) {
-			uploadDir.mkdir();
-		}
+        String fileName = filePart.getSubmittedFileName();
+        String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
+        File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdir();
+        }
 
-		String filePath = uploadDir + File.separator + fileName;
-		File file = new File(filePath);
-		try (InputStream input = filePart.getInputStream()) {
-			Files.copy(input, file.toPath());
-		}
+        int i = 1;
+        String filePath = uploadDir + File.separator + "imagen" + i + ".jpg";
+        File file = new File(filePath);
+        while (file.exists()) {
+            i++;
+            filePath = uploadDir + File.separator + "imagen" + i + ".jpg";
+            file = new File(filePath);
 
-		System.out.println("File uploaded successfully" + "El archivo " + fileName
-				+ " ha sido subido exitosamente a la siguiente ubicaci�n: " + file.getAbsolutePath());
+        }
+
+        try (InputStream input = filePart.getInputStream()) {
+            Files.copy(input, file.toPath());
+            System.out.println("File uploaded successfully. The file " + fileName
+                    + " has been uploaded to the following location: " + file.getAbsolutePath());
+            System.out.println(uploadPath +"\n"+ filePath +"\n"+ file.getAbsolutePath());
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
 
 		url = "" + file.getParentFile();
-
+System.out.println(url);
 		out.println("<html><body onload=\"showLoginError()\">  <h1>Guardado</h1> </body></html>");
 		resp.setHeader("Refresh", "0.5; URL=index.jsp");
 
