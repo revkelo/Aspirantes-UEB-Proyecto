@@ -73,11 +73,12 @@ public class ServletGuardar extends HttpServlet {
 
 		String nombre = req.getParameter("nombre");
 		String fecha = req.getParameter("fecha");
+		System.out.println(fecha);
 		String colegio = req.getParameter("colegio");
 		String carrera = req.getParameter("carrera");
 		String estrato = req.getParameter("estrato");
 		String homologado = req.getParameter("homologado");
-System.out.println(fecha);
+
 		String[] partes = fecha.split("-");
 		int anio = Integer.parseInt(partes[0]);
 		int mes = Integer.parseInt(partes[1]);
@@ -155,8 +156,8 @@ System.out.println(fecha);
 		} else {
 			costo = "";
 		}
-
-		lista.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo));
+System.out.println(costo);
+		lista.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo+""));
 
 		System.out.println(nombre);
 		System.out.println(fecha);
