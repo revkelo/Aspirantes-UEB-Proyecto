@@ -1,7 +1,9 @@
 # Aspirantes UEB
 
 Proyecto JSP
-
+Kevin Gonzalez (Revkelo)
+Nicolas Machado (Nicolas19019)
+Daniela Piñeros (Mona1217)
 
 ## Screenshots
 
