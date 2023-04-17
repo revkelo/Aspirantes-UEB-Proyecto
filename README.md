@@ -1,4 +1,4 @@
-# Aspirantes-UEB-Proyecto# Aspirantes UEB
+# Aspirantes UEB
 
 Proyecto JSP
 
