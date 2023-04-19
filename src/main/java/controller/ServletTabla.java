@@ -3,14 +3,19 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+<<<<<<< Updated upstream
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
+=======
+import java.util.ArrayList;
+>>>>>>> Stashed changes
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.AspiranteDTO;
 
 public class ServletTabla extends HttpServlet {
 
