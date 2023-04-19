@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import Model.AspiranteDAO;
 import Model.AspiranteDTO;
+import Model.persistance.FileHandler;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
@@ -159,6 +160,8 @@ public class ServletGuardar extends HttpServlet {
 		}
 		System.out.println(costo);
 		lista.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo + ""));
+		writeFile(lista);
+		
 
 		System.out.println(nombre);
 		System.out.println(fecha);
@@ -218,6 +221,20 @@ public class ServletGuardar extends HttpServlet {
 
 		super.doDelete(req, resp);
 	}
+	public String contentBase(ArrayList<AspiranteDTO>list) {
+		String res = "";
+		for (AspiranteDTO s : list) {
+			res += s.toString();
+		}
+		return res;
+	}
 
+	/**
+	 * Metodo encargado de escribir en la base de datos
+	 */
+	public void writeFile(ArrayList<AspiranteDTO> list) {
+		String content = contentBase(list);
+		FileHandler.writeFile("Aspirantes.csv", content);
+	}
 
 }

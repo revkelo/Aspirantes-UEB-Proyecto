@@ -10,11 +10,6 @@ public class AspiranteDTO {
 	private String homologado;
 	private String costo;
 
-
-
-
-	
-
 	public AspiranteDTO(String nombre, String fecha, String edad, String colegio, String carrera, String estrato,
 			String homologado, String costo) {
 		super();
@@ -28,22 +23,12 @@ public class AspiranteDTO {
 		this.costo = costo;
 	}
 
-
-
-
-
-
 	/**
 	 * @return the nombre
 	 */
 	public String getNombre() {
 		return nombre;
 	}
-
-
-
-
-
 
 	/**
 	 * @param nombre the nombre to set
@@ -52,16 +37,12 @@ public class AspiranteDTO {
 		this.nombre = nombre;
 	}
 
-
-
 	/**
 	 * @return the fecha
 	 */
 	public String getFecha() {
 		return fecha;
 	}
-
-
 
 	/**
 	 * @param fecha the fecha to set
@@ -70,16 +51,12 @@ public class AspiranteDTO {
 		this.fecha = fecha;
 	}
 
-
-
 	/**
 	 * @return the colegio
 	 */
 	public String getColegio() {
 		return colegio;
 	}
-
-
 
 	/**
 	 * @param colegio the colegio to set
@@ -88,16 +65,12 @@ public class AspiranteDTO {
 		this.colegio = colegio;
 	}
 
-
-
 	/**
 	 * @return the carrera
 	 */
 	public String getCarrera() {
 		return carrera;
 	}
-
-
 
 	/**
 	 * @param carrera the carrera to set
@@ -106,16 +79,12 @@ public class AspiranteDTO {
 		this.carrera = carrera;
 	}
 
-
-
 	/**
 	 * @return the estrato
 	 */
 	public String getEstrato() {
 		return estrato;
 	}
-
-
 
 	/**
 	 * @param estrato the estrato to set
@@ -124,16 +93,12 @@ public class AspiranteDTO {
 		this.estrato = estrato;
 	}
 
-
-
 	/**
 	 * @return the homologado
 	 */
 	public String getHomologado() {
 		return homologado;
 	}
-
-
 
 	/**
 	 * @param homologado the homologado to set
@@ -142,16 +107,12 @@ public class AspiranteDTO {
 		this.homologado = homologado;
 	}
 
-
-
 	/**
 	 * @return the costo
 	 */
 	public String getCosto() {
 		return costo;
 	}
-
-
 
 	/**
 	 * @param costo the costo to set
@@ -160,19 +121,12 @@ public class AspiranteDTO {
 		this.costo = costo;
 	}
 
-
-
 	/**
 	 * @return the edad
 	 */
 	public String getEdad() {
 		return edad;
 	}
-
-
-
-
-
 
 	/**
 	 * @param edad the edad to set
@@ -181,15 +135,12 @@ public class AspiranteDTO {
 		this.edad = edad;
 	}
 
-
 	@Override
 	public String toString() {
-		return "AspiranteDTO [nombre=" + nombre + ", fecha=" + fecha + ", edad=" + edad + ", colegio=" + colegio
-				+ ", carrera=" + carrera + ", estrato=" + estrato + ", homologado=" + homologado + ", costo=" + costo
-				+ "]";
+		String res = "";
+		res += this.nombre + ";" + this.fecha + ";" + this.edad + ";" + this.colegio + ";" + this.carrera + ";"
+				+ this.estrato + ";" + this.homologado + ";" + this.costo + "\n";
+		return res;
 	}
-
-
-
 
 }
