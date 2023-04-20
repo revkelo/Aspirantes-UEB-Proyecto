@@ -13,7 +13,13 @@ public class AspiranteDAO {
 	}
 
 	
-
+public String listar(ArrayList<AspiranteDTO> lista) {
+	String rta= "";
+	for (int i = 0; i < lista.size(); i++) {
+		rta = lista.toString();
+	}
+	return rta;
+}
 	public int buscar(String aux) {
 
 		for (int i = 0; i < list.size(); i++) {

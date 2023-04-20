@@ -139,7 +139,7 @@ public class AspiranteDTO {
 	public String toString() {
 		String res = "";
 		res += this.nombre + ";" + this.fecha + ";" + this.edad + ";" + this.colegio + ";" + this.carrera + ";"
-				+ this.estrato + ";" + this.homologado + ";" + this.costo + "\n";
+				+ this.estrato + ";" + this.homologado + ";" + this.costo;
 		return res;
 	}
 

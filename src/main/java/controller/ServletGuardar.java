@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -8,6 +10,7 @@ import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Base64;
 
 import Model.AspiranteDAO;
 import Model.AspiranteDTO;
@@ -18,11 +21,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import java.io.ByteArrayOutputStream;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 104 * 1024 * 10, maxRequestSize = 1024 * 1024 * 100)
 public class ServletGuardar extends HttpServlet {
-
-
+	
+	private AspiranteDAO d;
+	public ServletGuardar() {
+		d = new AspiranteDAO();
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -160,8 +167,7 @@ public class ServletGuardar extends HttpServlet {
 		}
 		System.out.println(costo);
 		lista.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo + ""));
-		writeFile(lista);
-		
+//		writeFile(lista);
 
 		System.out.println(nombre);
 		System.out.println(fecha);
@@ -172,32 +178,30 @@ public class ServletGuardar extends HttpServlet {
 		System.out.println(homologado);
 		System.out.println(costo);
 
-		Part filePart = req.getPart("foto");
-        String fileName = filePart.getSubmittedFileName();
-        String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
-        File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) {
-            uploadDir.mkdir();
-        }
-
-        int i = 1;
-        String filePath = uploadDir + File.separator + i + ".jpg";
-        File file = new File(filePath);
-        while (file.exists()) {
-            i++;
-            filePath = uploadDir + File.separator +  i + ".jpg";
-            file = new File(filePath);
-
-        }
-
-        try (InputStream input = filePart.getInputStream()) {
-            Files.copy(input, file.toPath());
-       
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-
+		Part part = req.getPart("foto");
+		String filename = part.getSubmittedFileName();
+		String uploadPath = getServletContext().getRealPath("/" + "imagenes" + File.separator + filename);
+		File uploadDir = new File(uploadPath);
 	
+
+		int i = 1;
+		String filepath = uploadDir + File.separator + i + ".jpg";
+		File file = new File(filepath);
+		while (file.exists()) {
+			i++;
+			filepath = uploadDir + File.separator + i + ".jpg";
+			file = new File(filepath);
+
+		}
+
+		try (InputStream input = part.getInputStream()) {
+			Files.copy(input, file.toPath());
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		convertidor(lista, filepath);
+
 		out.println("<html><body onload=\"showLoginError()\">  <h1>Guardado</h1> </body></html>");
 		resp.setHeader("Refresh", "0.5; URL=index.jsp");
 
@@ -221,7 +225,8 @@ public class ServletGuardar extends HttpServlet {
 
 		super.doDelete(req, resp);
 	}
-	public String contentBase(ArrayList<AspiranteDTO>list) {
+
+	public String contentBase(ArrayList<AspiranteDTO> list) {
 		String res = "";
 		for (AspiranteDTO s : list) {
 			res += s.toString();
@@ -235,6 +240,18 @@ public class ServletGuardar extends HttpServlet {
 	public void writeFile(ArrayList<AspiranteDTO> list) {
 		String content = contentBase(list);
 		FileHandler.writeFile("Aspirantes.csv", content);
+	}
+
+	public void convertidor(ArrayList<AspiranteDTO> lista, String aux) {
+
+		String csvFilePath = "C:\\Users\\nicol\\Desktop\\Aspirantes.csv";
+
+		try (PrintWriter writer = new PrintWriter(new FileWriter(csvFilePath, true))) {
+			writer.println(d.listar(lista) + ";" + aux + "\n");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
