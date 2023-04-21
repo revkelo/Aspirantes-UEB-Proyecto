@@ -11,11 +11,6 @@ public class AspiranteDTO {
 	private String homologado;
 	private String costo;
 
-
-
-
-	
-
 	public AspiranteDTO(String nombre, String fecha, String edad, String colegio, String carrera, String estrato,
 			String homologado, String costo) {
 		super();
@@ -28,11 +23,9 @@ public class AspiranteDTO {
 		this.homologado = homologado;
 		this.costo = costo;
 	}
-
-
-
-
-
+	public AspiranteDTO() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @return the nombre
@@ -41,19 +34,12 @@ public class AspiranteDTO {
 		return nombre;
 	}
 
-
-
-
-
-
 	/**
 	 * @param nombre the nombre to set
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-
 
 	/**
 	 * @return the fecha
@@ -62,16 +48,12 @@ public class AspiranteDTO {
 		return fecha;
 	}
 
-
-
 	/**
 	 * @param fecha the fecha to set
 	 */
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
-
-
 
 	/**
 	 * @return the colegio
@@ -80,16 +62,12 @@ public class AspiranteDTO {
 		return colegio;
 	}
 
-
-
 	/**
 	 * @param colegio the colegio to set
 	 */
 	public void setColegio(String colegio) {
 		this.colegio = colegio;
 	}
-
-
 
 	/**
 	 * @return the carrera
@@ -98,16 +76,12 @@ public class AspiranteDTO {
 		return carrera;
 	}
 
-
-
 	/**
 	 * @param carrera the carrera to set
 	 */
 	public void setCarrera(String carrera) {
 		this.carrera = carrera;
 	}
-
-
 
 	/**
 	 * @return the estrato
@@ -116,16 +90,12 @@ public class AspiranteDTO {
 		return estrato;
 	}
 
-
-
 	/**
 	 * @param estrato the estrato to set
 	 */
 	public void setEstrato(String estrato) {
 		this.estrato = estrato;
 	}
-
-
 
 	/**
 	 * @return the homologado
@@ -134,16 +104,12 @@ public class AspiranteDTO {
 		return homologado;
 	}
 
-
-
 	/**
 	 * @param homologado the homologado to set
 	 */
 	public void setHomologado(String homologado) {
 		this.homologado = homologado;
 	}
-
-
 
 	/**
 	 * @return the costo
@@ -152,16 +118,12 @@ public class AspiranteDTO {
 		return costo;
 	}
 
-
-
 	/**
 	 * @param costo the costo to set
 	 */
 	public void setCosto(String costo) {
 		this.costo = costo;
 	}
-
-
 
 	/**
 	 * @return the edad
@@ -170,11 +132,6 @@ public class AspiranteDTO {
 		return edad;
 	}
 
-
-
-
-
-
 	/**
 	 * @param edad the edad to set
 	 */
@@ -182,15 +139,12 @@ public class AspiranteDTO {
 		this.edad = edad;
 	}
 
-
 	@Override
 	public String toString() {
-		return "AspiranteDTO [nombre=" + nombre + ", fecha=" + fecha + ", edad=" + edad + ", colegio=" + colegio
-				+ ", carrera=" + carrera + ", estrato=" + estrato + ", homologado=" + homologado + ", costo=" + costo
-				+ "]";
+		String res = "";
+		res += this.nombre + ";" + this.fecha + ";" + this.edad + ";" + this.colegio + ";" + this.carrera + ";"
+				+ this.estrato + ";" + this.homologado + ";" + this.costo;
+		return res;
 	}
-
-
-
 
 }
