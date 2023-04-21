@@ -16,7 +16,6 @@ import java.util.Base64;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
-
 import model.AspiranteDAO;
 import model.AspiranteDTO;
 import model.persistance.FileHandler;
@@ -34,7 +33,7 @@ public class ServletGuardar extends HttpServlet {
 
 	private AspiranteDAO d;
 
-	private FileHandler f ;
+	private FileHandler f;
 
 	public ServletGuardar() {
 		d = new AspiranteDAO();
@@ -188,35 +187,37 @@ public class ServletGuardar extends HttpServlet {
 		System.out.println(homologado);
 		System.out.println(costo);
 
-		Part part = req.getPart("foto");
-		String filename = part.getSubmittedFileName();
-		String uploadPath = getServletContext().getRealPath("/" + "imagenes" + File.separator + filename);
+		Part filePart = req.getPart("foto");
+		String fileName = filePart.getSubmittedFileName();
+		String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
 		File uploadDir = new File(uploadPath);
+		if (!uploadDir.exists()) {
+			uploadDir.mkdir();
+		}
 
 		int i = 1;
-		String filepath = uploadDir + File.separator + i + ".jpg";
-		File file = new File(filepath);
+		String file_path = uploadDir + File.separator + i + ".jpg";
+		File file = new File(file_path);
 		while (file.exists()) {
 			i++;
-			filepath = uploadDir + File.separator + i + ".jpg";
-			file = new File(filepath);
+			file_path = uploadDir + File.separator + i + ".jpg";
+			file = new File(file_path);
 
 		}
 
-		try (InputStream input = part.getInputStream()) {
+		try (InputStream input = filePart.getInputStream()) {
 			Files.copy(input, file.toPath());
-
+			System.out.println("File uploaded successfully. The file " + fileName
+					+ " has been uploaded to the following location: " + file.getAbsolutePath());
+			System.out.println(uploadPath + "\n" + file_path + "\n" + file.getAbsolutePath());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-		
 
-		String csvfilepath =  "Aspirantes.csv";
+		String csvfilepath = "Aspirantes.csv";
 
 		File archivoCSV = new File(csvfilepath);
 
-	
 		if (!archivoCSV.exists()) {
 			try {
 				archivoCSV.createNewFile();
@@ -229,9 +230,7 @@ public class ServletGuardar extends HttpServlet {
 			System.out.println("El archivo ya existe.");
 		}
 
-	
-		
-		f.escribirCSV(lista, filepath,archivoCSV.getAbsolutePath());
+		f.escribirCSV(lista, file_path, archivoCSV.getAbsolutePath());
 
 		out.println("<html><body onload=\"showLoginError()\">  <h1>Guardado</h1> </body></html>");
 		resp.setHeader("Refresh", "0.5; URL=index.jsp");
@@ -279,6 +278,5 @@ public class ServletGuardar extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 
 }
