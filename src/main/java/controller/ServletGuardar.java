@@ -20,6 +20,7 @@ import com.opencsv.exceptions.CsvValidationException;
 import model.AspiranteDAO;
 import model.AspiranteDTO;
 import model.persistance.FileHandler;
+import view.Console;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -33,40 +34,20 @@ import java.io.ByteArrayOutputStream;
 public class ServletGuardar extends HttpServlet {
 
 	private AspiranteDAO d;
-
+	private Console con;
 	private FileHandler f;
 
 	public ServletGuardar() {
 		d = new AspiranteDAO();
 		f = new FileHandler();
+		con = new Console();
+
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		PrintWriter salida = resp.getWriter();
-		salida.println("<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n"
-				+ "<title>Insert title here</title>\r\n" + "</head>\r\n" + "<body>\r\n" + "\r\n" + "<table>\r\n"
-				+ "  <thead>\r\n" + "    <tr>\r\n" + "      <th>ID</th>\r\n" + "      <th>Fecha de compra</th>\r\n"
-				+ "      <th>Tipo de pasaporte</th>\r\n" + "      <th>Costo unitario</th>\r\n"
-				+ "      <th>Cantidad de pasaportes</th>\r\n" + "      <th>Numero de atracciones</th>\r\n"
-				+ "    </tr>\r\n" + "  </thead>\r\n" + "  <tbody>\r\n");
-
-//				
-//				for (int i = 0; i < dao.getList().size(); i++) {
-//					salida.println("    <tr>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getId()+"</td>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getFecha_compra()+"</td>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getTipo_pasaporte()+"</td>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getCosto_unitario()+"</td>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getCantidad_pasaportes()+"</td>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getNumero_atracciones()+"</td>\r\n"
-//							+ "    </tr>\r\n"
-//							
-//							);
-//				}
-
-		salida.println("\r\n" + "  </tbody>\r\n" + "</table>\r\n" + "\r\n" + "\r\n" + "</body>\r\n" + "</html>");
 
 		salida.close();
 
@@ -74,7 +55,7 @@ public class ServletGuardar extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
 
@@ -93,7 +74,7 @@ public class ServletGuardar extends HttpServlet {
 		String nombre = req.getParameter("nombre");
 		nombre.toLowerCase();
 		String fecha = req.getParameter("fecha");
-		System.out.println(fecha);
+		con.mostrar(fecha);
 		String colegio = req.getParameter("colegio");
 		String carrera = req.getParameter("carrera");
 		String estrato = req.getParameter("estrato");
@@ -176,24 +157,24 @@ public class ServletGuardar extends HttpServlet {
 		} else {
 			costo = "";
 		}
-		System.out.println(costo);
+		con.mostrar(costo);
 
-		System.out.println(nombre);
-		System.out.println(fecha);
-		System.out.println(edad);
+		con.mostrar(nombre);
+		con.mostrar(fecha);
+		con.mostrar(edad+"");
 
 		if (edad >= 14 && edad <= 200) {
 
-			System.out.println(colegio);
-			System.out.println(carrera);
-			System.out.println(estrato);
-			System.out.println(homologado);
-			System.out.println(costo);
+			con.mostrar(colegio);
+			con.mostrar(carrera);
+			con.mostrar(estrato);
+			con.mostrar(homologado);
+			con.mostrar(costo);
 
 			Part filePart = req.getPart("foto");
 			String fileName = filePart.getSubmittedFileName();
 
-			System.out.println("fileName: " + fileName);
+			con.mostrar("fileName: " + fileName);
 			String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
 			File uploadDir = new File(uploadPath);
 			if (!uploadDir.exists()) {
@@ -209,7 +190,7 @@ public class ServletGuardar extends HttpServlet {
 				file = new File(filePath);
 
 			}
-			System.out.println(file.getAbsolutePath());
+			con.mostrar(file.getAbsolutePath());
 
 			try (InputStream input = filePart.getInputStream()) {
 				Files.copy(input, file.toPath());
@@ -227,17 +208,17 @@ public class ServletGuardar extends HttpServlet {
 			if (!archivoCSV.exists()) {
 				try {
 					archivoCSV.createNewFile();
-					System.out.println("Archivo creado exitosamente.");
+					con.mostrar("Archivo creado exitosamente.");
 				} catch (IOException e) {
-					System.out.println("Error al crear archivo.");
+					con.mostrar("Error al crear archivo.");
 					e.printStackTrace();
 				}
 			} else {
-				System.out.println("El archivo ya existe.");
+				con.mostrar("El archivo ya existe.");
 			}
 
 			for (int j = 0; j < lista.size(); j++) {
-				System.out.println(lista.get(j).getNombre());
+				con.mostrar(lista.get(j).getNombre());
 			}
 
 			f.escribirCSV(lista, archivoCSV.getAbsolutePath(), lista.size());
@@ -249,14 +230,14 @@ public class ServletGuardar extends HttpServlet {
 
 			out.close();
 
-			System.out.println(lista.size() + "  El tamano del la lista ");
-			System.out.println(lista.toString());
+			con.mostrar(lista.size() + "  El tamano del la lista ");
+			con.mostrar(lista.toString());
 
 		} else {
 			out.println("<html><body onload=\"showLoginError()\">  <h1>ERROR FECHA DE NACIMIENTO</h1> </body></html>");
 			resp.setHeader("Refresh", "1; URL=index.jsp");
 			out.close();
-			
+
 		}
 	}
 

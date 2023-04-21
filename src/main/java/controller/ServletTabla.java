@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import model.AspiranteDAO;
 import model.AspiranteDTO;
 import model.persistance.FileHandler;
-
+import view.Console;
 import model.AspiranteDTO;
 
 import jakarta.servlet.ServletException;
@@ -20,10 +20,12 @@ public class ServletTabla extends HttpServlet {
 
 	private FileHandler f;
 	private AspiranteDAO dao;
+	private Console con;
 
 	public ServletTabla() {
 	f= new FileHandler();
 	dao = new AspiranteDAO();
+	con = new Console();
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -48,7 +50,7 @@ public class ServletTabla extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
-		System.out.println("----------------------------------------------------------------------------");
+		con.mostrar("----------------------------------------------------------------------------");
 		ArrayList<AspiranteDTO> lista = (ArrayList<AspiranteDTO>) req.getSession().getAttribute("lista");
 
 		PrintWriter salida = resp.getWriter();
@@ -124,7 +126,7 @@ public class ServletTabla extends HttpServlet {
 
         dao.delete(dao.buscar(name, lista), lista);
 
-        System.out.println(lista.size() + "NAME: " + name);
+        con.mostrar(lista.size() + "NAME: " + name);
 		salida.println(
 				"<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n" + "<title>Insert title here</title>\r\n"
 						+ "</head>\r\n" + "<body>\r\n" + "<h1>Eliminado</h1>\r\n" + "</body>\r\n" + "</html>");
