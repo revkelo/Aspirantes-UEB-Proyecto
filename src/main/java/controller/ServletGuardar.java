@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Iterator;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
@@ -90,6 +91,7 @@ public class ServletGuardar extends HttpServlet {
 		}
 
 		String nombre = req.getParameter("nombre");
+		nombre.toLowerCase();
 		String fecha = req.getParameter("fecha");
 		System.out.println(fecha);
 		String colegio = req.getParameter("colegio");
@@ -175,107 +177,86 @@ public class ServletGuardar extends HttpServlet {
 			costo = "";
 		}
 		System.out.println(costo);
-		lista.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo + ""));
-//		writeFile(lista);
 
 		System.out.println(nombre);
 		System.out.println(fecha);
 		System.out.println(edad);
-		System.out.println(colegio);
-		System.out.println(carrera);
-		System.out.println(estrato);
-		System.out.println(homologado);
-		System.out.println(costo);
 
-		Part filePart = req.getPart("foto");
-		String fileName = filePart.getSubmittedFileName();
-		String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
-		File uploadDir = new File(uploadPath);
-		if (!uploadDir.exists()) {
-			uploadDir.mkdir();
-		}
+		if (edad >= 14 && edad <= 200) {
 
-		int i = 1;
-		String file_path = uploadDir + File.separator + i + ".jpg";
-		File file = new File(file_path);
-		while (file.exists()) {
-			i++;
-			file_path = uploadDir + File.separator + i + ".jpg";
-			file = new File(file_path);
+			System.out.println(colegio);
+			System.out.println(carrera);
+			System.out.println(estrato);
+			System.out.println(homologado);
+			System.out.println(costo);
 
-		}
+			Part filePart = req.getPart("foto");
+			String fileName = filePart.getSubmittedFileName();
 
-		try (InputStream input = filePart.getInputStream()) {
-			Files.copy(input, file.toPath());
-			System.out.println("File uploaded successfully. The file " + fileName
-					+ " has been uploaded to the following location: " + file.getAbsolutePath());
-			System.out.println(uploadPath + "\n" + file_path + "\n" + file.getAbsolutePath());
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-
-		String csvfilepath = "Aspirantes.csv";
-
-		File archivoCSV = new File(csvfilepath);
-
-		if (!archivoCSV.exists()) {
-			try {
-				archivoCSV.createNewFile();
-				System.out.println("Archivo creado exitosamente.");
-			} catch (IOException e) {
-				System.out.println("Error al crear archivo.");
-				e.printStackTrace();
+			System.out.println("fileName: " + fileName);
+			String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
+			File uploadDir = new File(uploadPath);
+			if (!uploadDir.exists()) {
+				uploadDir.mkdir();
 			}
+
+			int i = 0;
+			String filePath = uploadDir + File.separator + i + ".jpg";
+			File file = new File(filePath);
+			while (file.exists()) {
+				i++;
+				filePath = uploadDir + File.separator + i + ".jpg";
+				file = new File(filePath);
+
+			}
+			System.out.println(file.getAbsolutePath());
+
+			try (InputStream input = filePart.getInputStream()) {
+				Files.copy(input, file.toPath());
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
+			lista.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo + "",
+					file.getAbsolutePath()));
+			String csvfilepath = "Aspirantes.csv";
+
+			File archivoCSV = new File(csvfilepath);
+
+			if (!archivoCSV.exists()) {
+				try {
+					archivoCSV.createNewFile();
+					System.out.println("Archivo creado exitosamente.");
+				} catch (IOException e) {
+					System.out.println("Error al crear archivo.");
+					e.printStackTrace();
+				}
+			} else {
+				System.out.println("El archivo ya existe.");
+			}
+
+			for (int j = 0; j < lista.size(); j++) {
+				System.out.println(lista.get(j).getNombre());
+			}
+
+			f.escribirCSV(lista, archivoCSV.getAbsolutePath(), lista.size());
+
+			out.println("<html><body onload=\"showLoginError()\">  <h1>Guardado</h1> </body></html>");
+			resp.setHeader("Refresh", "0.5; URL=index.jsp");
+
+			req.getSession().setAttribute("lista", lista);
+
+			out.close();
+
+			System.out.println(lista.size() + "  El tamano del la lista ");
+			System.out.println(lista.toString());
+
 		} else {
-			System.out.println("El archivo ya existe.");
-		}
-
-		f.escribirCSV(lista, file_path, archivoCSV.getAbsolutePath());
-
-		out.println("<html><body onload=\"showLoginError()\">  <h1>Guardado</h1> </body></html>");
-		resp.setHeader("Refresh", "0.5; URL=index.jsp");
-
-		req.getSession().setAttribute("lista", lista);
-
-		out.close();
-
-		System.out.println(lista.size() + "  El tamano del la lista ");
-		System.out.println(lista.toString());
-
-	}
-
-	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html");
-		PrintWriter salida = resp.getWriter();
-		salida.println(
-				"<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n" + "<title>Insert title here</title>\r\n"
-						+ "</head>\r\n" + "<body>\r\n" + "<h1>ELIMINAR</h1>\r\n" + "</body>\r\n" + "</html>");
-		salida.close();
-
-		super.doDelete(req, resp);
-	}
-
-	public String contentBase(ArrayList<AspiranteDTO> list) {
-		String res = "";
-		for (AspiranteDTO s : list) {
-			res += s.toString();
-		}
-		return res;
-	}
-
-	public void convertidor(ArrayList<AspiranteDTO> lista, String aux) {
-
-		String userHomeFolder = System.getProperty("user.home");
-		String csvFilePath = userHomeFolder + "/Desktop/Aspirantes.csv";
-
-		try {
-			PrintWriter writer = new PrintWriter(new FileWriter(csvFilePath, true));
-			writer.println(d.listar(lista) + ";" + aux + "\n");
-			writer.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			out.println("<html><body onload=\"showLoginError()\">  <h1>ERROR FECHA DE NACIMIENTO</h1> </body></html>");
+			resp.setHeader("Refresh", "1; URL=index.jsp");
+			out.close();
+			
 		}
 	}
 
