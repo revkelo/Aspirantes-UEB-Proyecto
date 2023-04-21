@@ -10,6 +10,11 @@
 		<servlet-class>controller.ServletGuardar</servlet-class>
 	</servlet>
 	
+		<servlet>
+		<servlet-name>ServletListar</servlet-name>
+		<servlet-class>controller.ServletListar</servlet-class>
+	</servlet>
+	
 	<servlet>
 		<servlet-name>ServletAdmin</servlet-name>
 		<servlet-class>controller.ServletAdmin</servlet-class>
@@ -25,6 +30,10 @@
 		<url-pattern>/admin</url-pattern>
 	</servlet-mapping>
 	
+		<servlet-mapping>
+		<servlet-name>ServletListar</servlet-name>
+		<url-pattern>/listar</url-pattern>
+	</servlet-mapping>
 	
 	<servlet-mapping>
 		<servlet-name>ServletTabla</servlet-name>
