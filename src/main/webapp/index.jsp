@@ -43,7 +43,7 @@
 			</div>
 		</section>
 	</div>
-	
+
 	<section class="form-register">
 
 		<div class="container">
@@ -77,62 +77,62 @@
 
 						<option value="">Selecciona una carrera</option>
 						<option value="Arquitectura">Arquitectura</option>
-						<option value="Arte Dramático">Arte Dramático</option>
-						<option value="Artes Plásticas">Artes Plásticas</option>
-						<option value="Diseño Industrial">Diseño Industrial</option>
-						<option value="Diseño de Comunicación">Diseño de
-							Comunicación</option>
-						<option value="Formación Musical">Formación Musical</option>
-						<option value="Ciencia Política y Gobierno">Ciencia
-							Política y Gobierno</option>
+						<option value="Arte Dramatico">Arte Dramatico</option>
+						<option value="Artes Plasticas">Artes Plasticas</option>
+						<option value="Diseno Industrial">Diseno Industrial</option>
+						<option value="Diseno de Comunicacion">Diseno de
+							Comunicacion</option>
+						<option value="Formacion Musical">Formacion Musical</option>
+						<option value="Ciencia Politica y Gobierno">Ciencia
+							Politica y Gobierno</option>
 						<option value="Derecho">Derecho</option>
-						<option value="Filosofía">Filosofía</option>
-						<option value="Licenciatura en Educación Infantil">Licenciatura
-							en Educación Infantil</option>
-						<option value="Psicología">Psicología</option>
+						<option value="Filosofia">Filosofia</option>
+						<option value="Licenciatura en Educacion Infantil">Licenciatura
+							en Educacion Infantil</option>
+						<option value="Psicologia">Psicologia</option>
 						<option
-							value="Licenciatura en Bilingüismo con Énfasis en la Enseñanza del Inglés">Licenciatura
-							en Bilingüismo con Énfasis en la Enseñanza del Inglés</option>
+							value="Licenciatura en Bilinguismo con enfasis en la Ensenanza del Ingles">Licenciatura
+							en Bilinguismo con enfasis en la Ensenanza del Ingles</option>
 						<option
-							value="Intérprete Profesional de la Lengua de Señas Colombiana - Modalidad Virtual">Intérprete
-							Profesional de la Lengua de Señas Colombiana - Modalidad Virtual</option>
-						<option value="Administración de Empresas">Administración
+							value="Interprete Profesional de la Lengua de Senas Colombiana - Modalidad Virtual">Interprete
+							Profesional de la Lengua de Senas Colombiana - Modalidad Virtual</option>
+						<option value="Administracion de Empresas">Administracion
 							de Empresas</option>
-						<option value="Bioingeniería">Bioingeniería</option>
-						<option value="Ingeniería Ambiental">Ingeniería Ambiental</option>
-						<option value="Ingeniería Electrónica">Ingeniería
-							Electrónica</option>
-						<option value="Ingeniería Industrial">Ingeniería
+						<option value="Bioingenieria">Bioingenieria</option>
+						<option value="Ingenieria Ambiental">Ingenieria Ambiental</option>
+						<option value="Ingenieria Electronica">Ingenieria
+							Electronica</option>
+						<option value="Ingenieria Industrial">Ingenieria
 							Industrial</option>
-						<option value="Ingeniería de Sistemas">Ingeniería de
+						<option value="Ingenieria de Sistemas">Ingenieria de
 							Sistemas</option>
 						<option value="Negocios Internacionales">Negocios
 							Internacionales</option>
-						<option value="Matemáticas">Matemáticas</option>
-						<option value="Estadística">Estadística</option>
-						<option value="Contaduría Pública - Modalidad Virtual">Contaduría
-							Pública - Modalidad Virtual</option>
+						<option value="Matematicas">Matematicas</option>
+						<option value="Estadistica">Estadistica</option>
+						<option value="Contaduria Publica - Modalidad Virtual">Contaduria
+							Publica - Modalidad Virtual</option>
 						<option value="Finanzas - Modalidad Virtual">Finanzas -
 							Modalidad Virtual</option>
 						<option
-							value="Marketing y Transformación Digital - Modalidad Virtual">Marketing
-							y Transformación Digital - Modalidad Virtual</option>
-						<option value="Economía - Modalidad Virtual">Economía -
+							value="Marketing y Transformacion Digital - Modalidad Virtual">Marketing
+							y Transformacion Digital - Modalidad Virtual</option>
+						<option value="Economia - Modalidad Virtual">Economia -
 							Modalidad Virtual</option>
 						<option
-							value="Administración de Negocios Sostenibles - Modalidad Virtual">Administración
+							value="Administracion de Negocios Sostenibles - Modalidad Virtual">Administracion
 							de Negocios Sostenibles - Modalidad Virtual</option>
 						<option
-							value="Administración de Producción y Logística Internacional - Modalidad Virtual">Administración
-							de Producción y Logística Internacional - Modalidad Virtual</option>
-						<option value="Biología">Biología</option>
-						<option value="Enfermería">Enfermería</option>
-						<option value="Instrumentación Quirúrgica">Instrumentación
-							Quirúrgica</option>
+							value="Administracion de Produccion y Logistica Internacional - Modalidad Virtual">Administracion
+							de Produccion y Logistica Internacional - Modalidad Virtual</option>
+						<option value="Biologia">Biologia</option>
+						<option value="Enfermeria">Enfermeria</option>
+						<option value="Instrumentacion Quirurgica">Instrumentacion
+							Quirurgica</option>
 						<option value="Medicina">Medicina</option>
-						<option value="Odontología">Odontología</option>
-						<option value="Optometría">Optometría</option>
-						<option value="Química Farmacéutica">Química Farmacéutica</option>
+						<option value="Odontologia">Odontologia</option>
+						<option value="Optometria">Optometria</option>
+						<option value="Quimica Farmaceutica">Quimica Farmaceutica</option>
 
 					</select>
 					<p>
