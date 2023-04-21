@@ -1,5 +1,6 @@
 package model;
 
+
 public class AspiranteDTO {
 	private String nombre;
 	private String fecha;
