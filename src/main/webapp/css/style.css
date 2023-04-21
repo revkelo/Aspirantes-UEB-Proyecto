@@ -1,4 +1,45 @@
-html {
-  height: 100%;
-  width: 100%;
+body {
+    background-image:
+    url("recursos/fondoo.jpg");
+    background-attachment: fixed;
+}
+
+.form-register {
+    width: 800px;
+    background: #f39f2e;
+    padding: 30px;
+    margin: auto;
+    margin-top: 70px;
+    border-radius: 4px;
+}
+
+.form-register h1 {
+    color: #008000;
+    margin-bottom: 20px;
+}
+
+.controls {
+    width: 100%;
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid white;
+    font-size: 18px;
+}
+
+.form-register p {
+    color: black;
+    height: 40px;
+    font-size: 18px;
+}
+
+label {
+    color: black;
+}
+
+option {
+    color: white;
+    background: #f39f2e;
+    border-color: white;
 }
