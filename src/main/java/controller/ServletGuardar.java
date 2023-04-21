@@ -9,8 +9,8 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 
-import Model.AspiranteDAO;
-import Model.AspiranteDTO;
+import model.AspiranteDAO;
+import model.AspiranteDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
@@ -31,7 +31,7 @@ public class ServletGuardar extends HttpServlet {
 				+ "<title>Insert title here</title>\r\n" + "</head>\r\n" + "<body>\r\n" + "\r\n" + "<table>\r\n"
 				+ "  <thead>\r\n" + "    <tr>\r\n" + "      <th>ID</th>\r\n" + "      <th>Fecha de compra</th>\r\n"
 				+ "      <th>Tipo de pasaporte</th>\r\n" + "      <th>Costo unitario</th>\r\n"
-				+ "      <th>Cantidad de pasaportes</th>\r\n" + "      <th>Número de atracciones</th>\r\n"
+				+ "      <th>Cantidad de pasaportes</th>\r\n" + "      <th>Numero de atracciones</th>\r\n"
 				+ "    </tr>\r\n" + "  </thead>\r\n" + "  <tbody>\r\n");
 
 //				
@@ -94,65 +94,65 @@ public class ServletGuardar extends HttpServlet {
 			costo = "$8.958.000";
 		} else if (carrera.equals("Arte Dramatico") || carrera.equals("Artes Plasticas")) {
 			costo = "$7.350.000";
-		} else if (carrera.equals("Dise�o Industrial") || carrera.equals("Diseno de Comunicación")) {
+		} else if (carrera.equals("Dise�o Industrial") || carrera.equals("Diseno de Comunicacion")) {
 			costo = "$8.958.000";
-		} else if (carrera.equals("Formación Musical")) {
+		} else if (carrera.equals("Formacion Musical")) {
 			costo = "$8.336.000";
-		} else if (carrera.equals("Ciencia Política y Gobierno")) {
+		} else if (carrera.equals("Ciencia Politica y Gobierno")) {
 			costo = "$7.215.000";
 		} else if (carrera.equals("Derecho")) {
 			costo = "$8.125.000";
-		} else if (carrera.equals("Filosofía")) {
+		} else if (carrera.equals("Filosofia")) {
 			costo = "$3.420.000";
-		} else if (carrera.equals("Licenciatura en Educación Infantil")) {
+		} else if (carrera.equals("Licenciatura en Educacion Infantil")) {
 			costo = "$3.810.000";
-		} else if (carrera.equals("Psicología")) {
+		} else if (carrera.equals("Psicologia")) {
 			costo = "$8.622.000";
-		} else if (carrera.equals("Licenciatura en Bilingüismo con Énfasis en la Enseñanza del Inglés")) {
+		} else if (carrera.equals("Licenciatura en Bilinguismo con enfasis en la Ensenanza del Ingles")) {
 			costo = "$4.418.000";
-		} else if (carrera.equals("Intérprete Profesional de la Lengua de Señas Colombiana - Modalidad Virtual")) {
+		} else if (carrera.equals("Interprete Profesional de la Lengua de Senas Colombiana - Modalidad Virtual")) {
 			costo = "$3.918.000";
-		} else if (carrera.equals("Administración de Empresas")) {
+		} else if (carrera.equals("Administracion de Empresas")) {
 			costo = "$8.319.000";
-		} else if (carrera.equals("Bioingeniería")) {
+		} else if (carrera.equals("Bioingenieria")) {
 			costo = "$7.494.000";
-		} else if (carrera.equals("Ingeniería Ambiental")) {
+		} else if (carrera.equals("Ingenieria Ambiental")) {
 			costo = "$7.580.000";
-		} else if (carrera.equals("Ingeniería Electrónica") || carrera.equals("Ingeniería de Sistemas")) {
+		} else if (carrera.equals("Ingenieria Electronica") || carrera.equals("Ingenieria de Sistemas")) {
 			costo = "$6.605.000";
-		} else if (carrera.equals("Ingeniería Industrial")) {
+		} else if (carrera.equals("Ingenieria Industrial")) {
 			costo = "$7.300.000";
 		} else if (carrera.equals("Negocios Internacionales")) {
 			costo = "$8.763.000";
-		} else if (carrera.equals("Matemáticas")) {
+		} else if (carrera.equals("Matematicas")) {
 			costo = "$5.228.000";
-		} else if (carrera.equals("Estadística")) {
+		} else if (carrera.equals("Estadistica")) {
 			costo = "$5.961.000";
-		} else if (carrera.equals("Contaduría Pública - Modalidad Virtual")) {
+		} else if (carrera.equals("Contaduria Publica - Modalidad Virtual")) {
 			costo = "$2.948.000";
 		} else if (carrera.equals("Finanzas - Modalidad Virtual")) {
 			costo = "$8.763.000";
-		} else if (carrera.equals("Marketing y Transformación Digital - Modalidad Virtual")) {
+		} else if (carrera.equals("Marketing y Transformacion Digital - Modalidad Virtual")) {
 			costo = "$3.430.000";
-		} else if (carrera.equals("Economía - Modalidad Virtual")) {
+		} else if (carrera.equals("Economia - Modalidad Virtual")) {
 			costo = "$3.430.000";
-		} else if (carrera.equals("Administración de Negocios Sostenibles - Modalidad Virtual")) {
+		} else if (carrera.equals("Administracion de Negocios Sostenibles - Modalidad Virtual")) {
 			costo = "$8.763.000";
-		} else if (carrera.equals("Administración de Producción y Logística Internacional - Modalidad Virtual")) {
+		} else if (carrera.equals("Administracion de Produccion y Logistica Internacional - Modalidad Virtual")) {
 			costo = "$8.763.000";
-		} else if (carrera.equals("Biología")) {
+		} else if (carrera.equals("Biologia")) {
 			costo = "$7.448.000";
-		} else if (carrera.equals("Enfermería")) {
+		} else if (carrera.equals("Enfermeria")) {
 			costo = "$7.759.000";
-		} else if (carrera.equals("Instrumentación Quirúrgica")) {
+		} else if (carrera.equals("Instrumentacion Quirurgica")) {
 			costo = "$6.627.000";
 		} else if (carrera.equals("Medicina")) {
 			costo = "$27.195.000";
-		} else if (carrera.equals("Odontología")) {
+		} else if (carrera.equals("Odontologia")) {
 			costo = "$11.788.000";
-		} else if (carrera.equals("Optometría")) {
+		} else if (carrera.equals("Optometria")) {
 			costo = "$7.881.000";
-		} else if (carrera.equals("Química Farmacéutica")) {
+		} else if (carrera.equals("Quimica Farmaceutica")) {
 			costo = "$7.903.000";
 		} else {
 			costo = "";
@@ -202,7 +202,7 @@ public class ServletGuardar extends HttpServlet {
 
 		out.close();
 
-		System.out.println(lista.size() + "  El tamaño del la lista ");
+		System.out.println(lista.size() + "  El tamano del la lista ");
 		System.out.println(lista.toString());
 
 	}
