@@ -9,8 +9,8 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 
-import Model.AspiranteDAO;
-import Model.AspiranteDTO;
+import model.AspiranteDAO;
+import model.AspiranteDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
