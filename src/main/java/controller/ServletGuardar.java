@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import Model.AspiranteDAO;
 import Model.AspiranteDTO;
@@ -21,8 +22,6 @@ import jakarta.servlet.http.Part;
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 104 * 1024 * 10, maxRequestSize = 1024 * 1024 * 100)
 public class ServletGuardar extends HttpServlet {
 
-
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
@@ -34,19 +33,7 @@ public class ServletGuardar extends HttpServlet {
 				+ "      <th>Cantidad de pasaportes</th>\r\n" + "      <th>Número de atracciones</th>\r\n"
 				+ "    </tr>\r\n" + "  </thead>\r\n" + "  <tbody>\r\n");
 
-//				
-//				for (int i = 0; i < dao.getList().size(); i++) {
-//					salida.println("    <tr>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getId()+"</td>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getFecha_compra()+"</td>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getTipo_pasaporte()+"</td>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getCosto_unitario()+"</td>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getCantidad_pasaportes()+"</td>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getNumero_atracciones()+"</td>\r\n"
-//							+ "    </tr>\r\n"
-//							
-//							);
-//				}
+
 
 		salida.println("\r\n" + "  </tbody>\r\n" + "</table>\r\n" + "\r\n" + "\r\n" + "</body>\r\n" + "</html>");
 
@@ -92,7 +79,7 @@ public class ServletGuardar extends HttpServlet {
 
 		if (carrera.equals("Arquitectura")) {
 			costo = "$8.958.000";
-		} else if (carrera.equals("Arte Dramatico") || carrera.equals("Artes Plasticas")) {
+		} else if (carrera.equals("Arte Dramatico") || carrera.equals("Artes Plásticas")) {
 			costo = "$7.350.000";
 		} else if (carrera.equals("Dise�o Industrial") || carrera.equals("Diseno de Comunicación")) {
 			costo = "$8.958.000";
@@ -157,6 +144,7 @@ public class ServletGuardar extends HttpServlet {
 		} else {
 			costo = "";
 		}
+
 		System.out.println(costo);
 		lista.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo + ""));
 
@@ -170,31 +158,32 @@ public class ServletGuardar extends HttpServlet {
 		System.out.println(costo);
 
 		Part filePart = req.getPart("foto");
-        String fileName = filePart.getSubmittedFileName();
-        String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
-        File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) {
-            uploadDir.mkdir();
-        }
+		String fileName = filePart.getSubmittedFileName();
 
-        int i = 1;
-        String filePath = uploadDir + File.separator + i + ".jpg";
-        File file = new File(filePath);
-        while (file.exists()) {
-            i++;
-            filePath = uploadDir + File.separator +  i + ".jpg";
-            file = new File(filePath);
+		System.out.println("fileName: " + fileName);
+		String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
+		File uploadDir = new File(uploadPath);
+		if (!uploadDir.exists()) {
+			uploadDir.mkdir();
+		}
 
-        }
+		int i = 1;
+		String filePath = uploadDir + File.separator + i + ".jpg";
+		File file = new File(filePath);
+		while (file.exists()) {
+			i++;
+			filePath = uploadDir + File.separator + i + ".jpg";
+			file = new File(filePath);
 
-        try (InputStream input = filePart.getInputStream()) {
-            Files.copy(input, file.toPath());
-       
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
+		}
 
-	
+		try (InputStream input = filePart.getInputStream()) {
+			Files.copy(input, file.toPath());
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 		out.println("<html><body onload=\"showLoginError()\">  <h1>Guardado</h1> </body></html>");
 		resp.setHeader("Refresh", "0.5; URL=index.jsp");
 
@@ -218,6 +207,5 @@ public class ServletGuardar extends HttpServlet {
 
 		super.doDelete(req, resp);
 	}
-
 
 }

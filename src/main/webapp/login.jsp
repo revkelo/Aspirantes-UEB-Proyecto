@@ -17,29 +17,29 @@
 </head>
 <body>
 
-	<div class="container mt-5">
-		<div class="row justify-content-center">
-			<div class="col-md-6">
-				<h2 class="text-center mb-4">Iniciar Sesión</h2>
-				<form method="post" action="/UEB1/admin">
-					<div class="form-group">
-						<label for="username">Usuario:</label> <input type="text"
-							class="form-control" id="username" name="username"
-							placeholder="Ingrese su usuario">
-					</div>
-					<div class="form-group">
-						<label for="contraseña">Contraseña:</label> <input type="password"
-							class="form-control" id="password" name="password"
-							placeholder="Ingrese su contraseña">
-					</div>
-					<br>
-					<button type="submit" class="btn btn-primary btn-block">Iniciar
-						Sesión</button>
-				</form>
+	<section>
+		<div class="container mt-5">
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<h2 class="text-center mb-4">Iniciar Sesión</h2>
+					<form method="post" action="/UEB1/admin">
+						<div class="form-group">
+							<label for="username">Usuario:</label> <input type="text"
+								class="form-control" id="username" name="username"
+								placeholder="Ingrese su usuario">
+						</div>
+						<div class="form-group">
+							<label for="contraseña">Contraseña:</label> <input
+								type="password" class="form-control" id="password"
+								name="password" placeholder="Ingrese su contraseña">
+						</div>
+						<br>
+						<button type="submit" class="btn btn-primary btn-block">Iniciar
+							Sesión</button>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-
-
+	</section>
 </body>
 </html>

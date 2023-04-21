@@ -132,11 +132,12 @@
 						<h3>Eliminar</h3>
 					</div>
 					<div class="card-body">
-						<form class="form" action="/UEB1/tabla" method="post">
-							<input type="hidden" name="_method"  value= "DELETE">
+						<form class="form" action="/UEB1/tabla" method="POST">
+							<input type="hidden" name="_method" value="DELETE">
 							<div class="form-group">
-								<label for="inputIdEliminar">ID:</label> <input type="text"
-									class="form-control" id="inputIdEliminar" name="id">
+								<label for="inputIdEliminar">Nombre completo:</label> <input
+									type="text" class="form-control" id="inputNobreEliminar"
+									name="inputNobreEliminar">
 							</div>
 							<button type="submit" class="btn btn-danger">Eliminar</button>
 						</form>
@@ -158,9 +159,31 @@
 									class="form-control" id="inputIdActualizar" name="id">
 							</div>
 							<div class="form-group">
-								<label for="inputNombreActualizar">Nombre:</label> <input
-									type="text" class="form-control" id="inputNombreActualizar"
-									name="nombre">
+								<label for="opcactualizar">Selecciona el dato que desea
+									actualizar:</label> <select id="opcactualizar" name="opcactualizar"
+									required>
+
+									<option value="nombre">Nombre completo</option>
+									<option value="fecha nac">Fecha de nacimiento</option>
+									<option value="colegio">Colegio donde se graduo</option>
+									<option value="carrera">Carrera</option>
+									<option value="estrato">Estrato</option>
+
+								</select>
+
+								<div id="inputs">
+									<input type="text" class="form-control" id="etinombre" placeholder="Ingrese el nombre completo" style="display: none;" required > 
+										<input type="date" class="form-control" id="etifecha" name="etifecha"
+										placeholder="Ingresa tu fecha de nacimiento" required
+										style="display: none;"> 
+										<input type="text" class="form-control" id="eticolegio" name="eticolegio"
+										placeholder="Ingresa el nombre de tu colegio" required
+										style="display: none;"> <input type="text" id="input4"
+										style="display: none;"> <input type="text" id="input5"
+										style="display: none;"> <input type="text" id="input6"
+										style="display: none;">
+								</div>
+
 							</div>
 							<button type="submit" class="btn btn-primary">Actualizar</button>
 						</form>

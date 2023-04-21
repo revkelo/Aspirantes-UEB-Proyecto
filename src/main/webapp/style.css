@@ -1,4 +1,15 @@
-html {
-  height: 100%;
-  width: 100%;
+body{
+	
+	background: black-50;
 }
+
+.form-register {
+	width: 400px;
+	background: #4d4d4d;
+	color: black;
+	margin: auto;
+	margin-top: 70px;
+	border-radius: 4px;
+	margin: auto;
+}
+
