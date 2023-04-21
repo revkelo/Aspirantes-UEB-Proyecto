@@ -28,36 +28,52 @@
 
 <body>
 
+	<div class="container">
+
+		<section class="form-register">
+
+			<div class="row justify-content-center">
+				<div class="col-3">
+					<form action="login.jsp" method="POST">
+						<input type="submit" class="btn btn-outline-success"
+							value="Administrador">
+
+					</form>
+				</div>
+			</div>
+		</section>
+	</div>
+	
 	<section class="form-register">
 
 		<div class="container">
 
-			<h2>Formulario de Registro</h2>
+			<h1>Formulario de Registro</h1>
 
 			<form enctype="multipart/form-data" name="Formulario ServeletGuardar"
 				method="POST" action="http://localhost:8080/UEB1/guardado">
 
-				<div class="form-group">
+				<div class="controls">
 					<label for="nombre">Nombre completo:</label> <input type="text"
-						class="form-control" id="nombre" name="nombre"
+						class="controls" id="nombre" name="nombre"
 						placeholder="Ingresa tu nombre completo" required>
 				</div>
 
-				<div class="form-group">
+				<div class="controls">
 					<label for="fecha">Fecha de nacimiento:</label> <input type="date"
 						class="controls" id="fecha" name="fecha"
 						placeholder="Ingresa tu fecha de nacimiento" required>
 				</div>
 
-				<div class="form-group">
+				<div class="controls">
 					<label for="colegio">Colegio donde se graduó:</label> <input
-						type="text" class="form-control" id="colegio" name="colegio"
+						type="text" class="controls" id="colegio" name="colegio"
 						placeholder="Ingresa el nombre de tu colegio" required>
 				</div>
 
-				<div class="form-group">
+				<div class="controls">
 					<label for="carrera">Selecciona tu carrera:</label> <select
-						id="carrera" name="carrera" required>
+						class="controls" id="carrera" name="carrera" required>
 
 						<option value="">Selecciona una carrera</option>
 						<option value="Arquitectura">Arquitectura</option>
@@ -120,16 +136,16 @@
 
 					</select>
 					<p>
-						El costo de tu carrera es: <span id="costo"></span>
+						El costo de su carrera es: <span id="costo"></span>
 					</p>
 
 				</div>
 
-				<div class="form-group">
+				<div class="controls">
 
-					<label for="estrato">Estrato:</label> <select class="form-control"
+					<label for="estrato">Estrato:</label> <select class="controls"
 						id="estrato" name="estrato" required>
-						<option value="">Selecciona una carrera</option>
+						<option value="">Seleccione su estrato</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
@@ -138,12 +154,12 @@
 						<option value="6">6</option>
 					</select>
 				</div>
-				<div class="form-group">
+				<div class="controls">
 					<label for="homologado">Homologado:</label>
 					<div class="form-check">
 						<input class="form-check-input" type="radio" name="homologado"
 							id="homologadoSi" value="si" required> <label
-							class="form-check-label" for="homologadoSi"> Sí </label>
+							class="form-check-label" for="homologadoSi"> Si </label>
 					</div>
 					<div class="form-check">
 						<input class="form-check-input" type="radio" name="homologado"
@@ -152,34 +168,21 @@
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="controls">
 					<label for="foto">Subir foto:</label> <input type="file"
 						class="form-control-file" accept=".jpg" name="foto" id="foto"
 						accept="image/png,image/jpeg,image/bmp,image/gif,image/jpg,image/tif,image/tiff"
 						required>
 				</div>
 
-				<div class="container">
-					<button type="submit" class="btn btn-primary">Enviar</button>
+				<div class="row justify-content-center">
+					<button type="submit" class="btn btn-outline-success">Enviar</button>
 				</div>
 
 			</form>
 		</div>
 
 	</section>
-
-	<div class="container">
-
-		<div class="row justify-content-center">
-			<div class="col-4">
-				<form action="login.jsp" method="POST">
-					<input type="submit" class="btn btn-primary" value="Administrador">
-
-				</form>
-			</div>
-		</div>
-
-	</div>
 
 </body>
 
