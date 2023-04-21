@@ -4,14 +4,22 @@
 package Model.persistance;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.Properties;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvValidationException;
+
+import Model.AspiranteDAO;
+import Model.AspiranteDTO;
+
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 
 /**
  * Clase FileHandler del proyecto.
@@ -24,49 +32,49 @@ import java.util.Scanner;
 
 public class FileHandler {
 
-	/**
-	 * Atributo tipo File file.
-	 */
+	private AspiranteDAO d;
+
+	private static Scanner reader;
+
+	public static final String CSV_SEPARATOR = ",";
+
 	private static File file;
 
-	/**
-	 * Atributo tipo PrintWriter writer.
-	 */
-	private static PrintWriter writer;
-	/**
-	 * Atributo tipo Properties prop.
-	 */
-
-
-	/**
-	 * Metodo encargado de escribir el archivo
-	 * 
-	 * @param filename variable tipo String
-	 * @param content variable tipo String
-	 */
-	public static void writeFile(String filename, String content) {
-		
-		file = new File("src\\main\\java\\Model\\persistance\\" + filename);
-		System.out.println(file.getParent());
-		if (!file.exists()) {
-			try {
-				file.createNewFile();
-			} catch (IOException e) {
-				System.out.println("can´t create new file");
-				System.out.println(e.getMessage());
-			}
-		}
-		try {
-			writer = new PrintWriter(file);
-			writer.print(content);
-		} catch (FileNotFoundException e) {
-			System.out.println("file don´t exists");
-			e.printStackTrace();
-		}
-		writer.close();
+	public FileHandler() {
+		d = new AspiranteDAO();
 	}
 
+	public void escribirCSV(ArrayList<AspiranteDTO> lista, String aux) {
 
+		String userHomeFolder = System.getProperty("user.home");
+		String csvfilepath = userHomeFolder + "/Desktop/Aspirantes.csv";
 
+		try (PrintWriter writer = new PrintWriter(new FileWriter(csvfilepath), true)) {
+			for (int i = 0; i < lista.size(); i++) {
+
+				writer.println(d.listar(lista) + ";" + aux + "\n");
+				writer.close();
+				writer.flush();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void actualizarCSV(AspiranteDTO aspiranteActualizado, ArrayList<AspiranteDTO> lista) {
+		String userHomeFolder = System.getProperty("user.home");
+		String csvfilepath = userHomeFolder + "/Desktop/Aspirantes.csv";
+
+		for (int i = 0; i < lista.size(); i++) {
+			AspiranteDTO aspirante = lista.get(i);
+			if (aspirante.getNombre().equals(aspiranteActualizado.getNombre())) {
+
+				lista.set(i, aspiranteActualizado);
+				break;
+			}
+		}
+		escribirCSV(lista, "");
+	}
 
 }

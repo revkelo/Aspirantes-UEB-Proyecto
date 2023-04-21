@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +12,9 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Base64;
+
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
 
 import Model.AspiranteDAO;
 import Model.AspiranteDTO;
@@ -25,10 +29,14 @@ import java.io.ByteArrayOutputStream;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 104 * 1024 * 10, maxRequestSize = 1024 * 1024 * 100)
 public class ServletGuardar extends HttpServlet {
-	
+
 	private AspiranteDAO d;
+
+	private FileHandler f ;
+
 	public ServletGuardar() {
 		d = new AspiranteDAO();
+		f = new FileHandler();
 	}
 
 	@Override
@@ -182,7 +190,6 @@ public class ServletGuardar extends HttpServlet {
 		String filename = part.getSubmittedFileName();
 		String uploadPath = getServletContext().getRealPath("/" + "imagenes" + File.separator + filename);
 		File uploadDir = new File(uploadPath);
-	
 
 		int i = 1;
 		String filepath = uploadDir + File.separator + i + ".jpg";
@@ -200,7 +207,7 @@ public class ServletGuardar extends HttpServlet {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		convertidor(lista, filepath);
+		f.escribirCSV(lista, filepath);
 
 		out.println("<html><body onload=\"showLoginError()\">  <h1>Guardado</h1> </body></html>");
 		resp.setHeader("Refresh", "0.5; URL=index.jsp");
@@ -234,24 +241,20 @@ public class ServletGuardar extends HttpServlet {
 		return res;
 	}
 
-	/**
-	 * Metodo encargado de escribir en la base de datos
-	 */
-	public void writeFile(ArrayList<AspiranteDTO> list) {
-		String content = contentBase(list);
-		FileHandler.writeFile("Aspirantes.csv", content);
-	}
-
 	public void convertidor(ArrayList<AspiranteDTO> lista, String aux) {
 
-		String csvFilePath = "C:\\Users\\nicol\\Desktop\\Aspirantes.csv";
+		String userHomeFolder = System.getProperty("user.home");
+		String csvFilePath = userHomeFolder + "/Desktop/Aspirantes.csv";
 
-		try (PrintWriter writer = new PrintWriter(new FileWriter(csvFilePath, true))) {
+		try {
+			PrintWriter writer = new PrintWriter(new FileWriter(csvFilePath, true));
 			writer.println(d.listar(lista) + ";" + aux + "\n");
+			writer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
 
 }

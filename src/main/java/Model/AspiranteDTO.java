@@ -22,6 +22,9 @@ public class AspiranteDTO {
 		this.homologado = homologado;
 		this.costo = costo;
 	}
+	public AspiranteDTO() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @return the nombre
