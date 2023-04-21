@@ -63,6 +63,10 @@ public class FileHandler {
 		File archivoCSV2 = new File(csvfilepath2);
 
 		File archivoCSV3 = new File(csvfilepath3);
+		
+		
+		
+	
 
 		if (!archivoCSV.exists()) {
 			aux = "0";
@@ -101,15 +105,13 @@ public class FileHandler {
 		return aux;
 	}
 
-	public void escribirCSV(ArrayList<AspiranteDTO> lista, String aux) {
+	public void escribirCSV(ArrayList<AspiranteDTO> lista, String aux,String url) {
 
 		try {
 
-			String comprobar = comprobarArchivo();
 
-			System.out.println(comprobar);
 
-			try (PrintWriter writer = new PrintWriter(new FileWriter(comprobar), true)) {
+			try (PrintWriter writer = new PrintWriter(new FileWriter(url), true)) {
 				for (int i = 0; i < lista.size(); i++) {
 
 					writer.println(d.listar(lista) + ";" + aux + "\n");

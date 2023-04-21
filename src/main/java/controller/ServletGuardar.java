@@ -227,9 +227,9 @@ public class ServletGuardar extends HttpServlet {
 			System.out.println("El archivo ya existe.");
 		}
 
-		System.out.println(archivoCSV.getAbsolutePath());
+	
 		
-		f.escribirCSV(lista, filepath);
+		f.escribirCSV(lista, filepath,archivoCSV.getAbsolutePath());
 
 		out.println("<html><body onload=\"showLoginError()\">  <h1>Guardado</h1> </body></html>");
 		resp.setHeader("Refresh", "0.5; URL=index.jsp");
