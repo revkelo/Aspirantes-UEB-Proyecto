@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import Model.AspiranteDTO;
-import Model.persistance.FileHandler;
+import model.AspiranteDTO;
+import model.persistance.FileHandler;
 
 import model.AspiranteDTO;
 

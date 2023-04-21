@@ -1,7 +1,7 @@
 /**
  * Paquete que pertenece al modelo que se encarga de que el objeto persista 
  */
-package Model.persistance;
+package model.persistance;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,8 +15,8 @@ import java.util.Scanner;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
 
-import Model.AspiranteDAO;
-import Model.AspiranteDTO;
+import model.AspiranteDAO;
+import model.AspiranteDTO;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;

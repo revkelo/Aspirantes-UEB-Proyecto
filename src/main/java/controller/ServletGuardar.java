@@ -17,9 +17,9 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
 
-import Model.AspiranteDAO;
-import Model.AspiranteDTO;
-import Model.persistance.FileHandler;
+import model.AspiranteDAO;
+import model.AspiranteDTO;
+import model.persistance.FileHandler;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
