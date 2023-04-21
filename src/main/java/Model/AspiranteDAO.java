@@ -1,37 +1,59 @@
 package model;
 
 
-
+import java.io.IOException;
 import java.util.ArrayList;
+
+import model.persistance.FileHandler;
+
 
 
 public class AspiranteDAO {
 	private ArrayList<AspiranteDTO> list;
+
+	
+
 
 	public AspiranteDAO() {
 		list = new ArrayList<AspiranteDTO>();
 
 	}
 
+
 	
+	public String listar(ArrayList<AspiranteDTO> lista) {
+		String rta = "";
 
-	public int buscar(String aux) {
 
-		for (int i = 0; i < list.size(); i++) {
-
-			if (aux.equals(list.get(i).getNombre())) {
-				return i;
-			}
-
+		for (int i = 0; i < lista.size(); i++) {
+			rta = lista.toString();
 		}
-
-		return -1;
+		return rta;
 	}
 
-	public void agregarAspirante(String nombre, String fecha, String edad, String colegio, String carrera, String estrato,
-			String homologado, String costo) {
+	public AspiranteDTO buscar(String aux, ArrayList<AspiranteDTO> lista) {
 
-		list.add(new AspiranteDTO(nombre, fecha,edad, colegio, carrera, estrato, homologado,costo));
+		AspiranteDTO encontrado = null;
+
+		if (!lista.isEmpty()) {
+			for (int i = 0; i < lista.size(); i++) {
+				if (lista.get(i).getNombre().equals(aux)) {
+					encontrado = lista.get(i);
+					return encontrado;
+				}
+			}
+		}
+		return encontrado;
+	}
+	
+
+
+	
+
+	public void agregarAspirante(String nombre, String fecha, String edad, String colegio, String carrera,
+			String estrato, String homologado, String costo) {
+
+		list.add(new AspiranteDTO(nombre, fecha, edad, colegio, carrera, estrato, homologado, costo));
 
 	}
 
