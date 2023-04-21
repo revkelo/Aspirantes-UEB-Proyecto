@@ -44,37 +44,87 @@ public class FileHandler {
 		d = new AspiranteDAO();
 	}
 
-	public void escribirCSV(ArrayList<AspiranteDTO> lista, String aux) {
+	public String comprobarArchivo() {
 
+		String aux;
 		String userHomeFolder = System.getProperty("user.home");
 		String csvfilepath = userHomeFolder + "/Desktop/Aspirantes.csv";
 
-		try (PrintWriter writer = new PrintWriter(new FileWriter(csvfilepath), true)) {
-			for (int i = 0; i < lista.size(); i++) {
+		String csvfilepath1 = userHomeFolder + "/Escritorio/Aspirantes.csv";
 
-				writer.println(d.listar(lista) + ";" + aux + "\n");
-				writer.close();
-				writer.flush();
-			}
+		String csvfilepath2 = userHomeFolder + "/OneDrive/Desktop/Aspirantes.csv";
 
-		} catch (IOException e) {
-			e.printStackTrace();
+		String csvfilepath3 = userHomeFolder + "/OneDrive/Escritorio/Aspirantes.csv";
+
+		File archivoCSV = new File(csvfilepath);
+
+		File archivoCSV1 = new File(csvfilepath1);
+
+		File archivoCSV2 = new File(csvfilepath2);
+
+		File archivoCSV3 = new File(csvfilepath3);
+
+		if (!archivoCSV.exists()) {
+			aux = "0";
+		} else {
+			System.out.println("El archivo ya existe.");
+			aux = archivoCSV.getAbsolutePath();
+
 		}
+
+		if (!archivoCSV1.exists()) {
+			aux = "0";
+
+		} else {
+			System.out.println("El archivo ya existe.");
+			aux = archivoCSV1.getAbsolutePath();
+
+		}
+
+		if (!archivoCSV2.exists()) {
+			aux = "0";
+		} else {
+			System.out.println("El archivo ya existe.");
+			aux = archivoCSV2.getAbsolutePath();
+
+		}
+
+		if (!archivoCSV3.exists()) {
+			aux = "0";
+
+		} else {
+			System.out.println("El archivo ya existe.");
+			aux = archivoCSV3.getAbsolutePath();
+
+		}
+
+		return aux;
 	}
 
-	public void actualizarCSV(AspiranteDTO aspiranteActualizado, ArrayList<AspiranteDTO> lista) {
-		String userHomeFolder = System.getProperty("user.home");
-		String csvfilepath = userHomeFolder + "/Desktop/Aspirantes.csv";
+	public void escribirCSV(ArrayList<AspiranteDTO> lista, String aux) {
 
-		for (int i = 0; i < lista.size(); i++) {
-			AspiranteDTO aspirante = lista.get(i);
-			if (aspirante.getNombre().equals(aspiranteActualizado.getNombre())) {
+		try {
 
-				lista.set(i, aspiranteActualizado);
-				break;
+			String comprobar = comprobarArchivo();
+
+			System.out.println(comprobar);
+
+			try (PrintWriter writer = new PrintWriter(new FileWriter(comprobar), true)) {
+				for (int i = 0; i < lista.size(); i++) {
+
+					writer.println(d.listar(lista) + ";" + aux + "\n");
+					writer.close();
+					writer.flush();
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
+
+		} catch (Exception e) {
+
 		}
-		escribirCSV(lista, "");
+
 	}
 
 }

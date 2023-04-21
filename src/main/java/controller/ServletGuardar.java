@@ -207,6 +207,28 @@ public class ServletGuardar extends HttpServlet {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		
+		
+
+		String csvfilepath =  "Aspirantes.csv";
+
+		File archivoCSV = new File(csvfilepath);
+
+	
+		if (!archivoCSV.exists()) {
+			try {
+				archivoCSV.createNewFile();
+				System.out.println("Archivo creado exitosamente.");
+			} catch (IOException e) {
+				System.out.println("Error al crear archivo.");
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("El archivo ya existe.");
+		}
+
+		System.out.println(archivoCSV.getAbsolutePath());
+		
 		f.escribirCSV(lista, filepath);
 
 		out.println("<html><body onload=\"showLoginError()\">  <h1>Guardado</h1> </body></html>");
