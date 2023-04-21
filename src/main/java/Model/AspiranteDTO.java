@@ -1,6 +1,5 @@
 package model;
 
-
 public class AspiranteDTO {
 	private String nombre;
 	private String fecha;
@@ -10,9 +9,10 @@ public class AspiranteDTO {
 	private String estrato;
 	private String homologado;
 	private String costo;
+	private String url;
 
 	public AspiranteDTO(String nombre, String fecha, String edad, String colegio, String carrera, String estrato,
-			String homologado, String costo) {
+			String homologado, String costo, String url) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
@@ -22,7 +22,9 @@ public class AspiranteDTO {
 		this.estrato = estrato;
 		this.homologado = homologado;
 		this.costo = costo;
+		this.url = url;
 	}
+
 	public AspiranteDTO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -139,11 +141,25 @@ public class AspiranteDTO {
 		this.edad = edad;
 	}
 
+	/**
+	 * @return the url
+	 */
+	public String getUrl() {
+		return url;
+	}
+
+	/**
+	 * @param url the url to set
+	 */
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	@Override
 	public String toString() {
 		String res = "";
 		res += this.nombre + ";" + this.fecha + ";" + this.edad + ";" + this.colegio + ";" + this.carrera + ";"
-				+ this.estrato + ";" + this.homologado + ";" + this.costo;
+				+ this.estrato + ";" + this.homologado + ";" + this.costo + ";" + this.url;
 		return res;
 	}
 

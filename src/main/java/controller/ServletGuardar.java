@@ -12,14 +12,15 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Iterator;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
-
 import model.AspiranteDAO;
 import model.AspiranteDTO;
 import model.persistance.FileHandler;
+import view.Console;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -33,40 +34,20 @@ import java.io.ByteArrayOutputStream;
 public class ServletGuardar extends HttpServlet {
 
 	private AspiranteDAO d;
-
-	private FileHandler f ;
+	private Console con;
+	private FileHandler f;
 
 	public ServletGuardar() {
 		d = new AspiranteDAO();
 		f = new FileHandler();
+		con = new Console();
+
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		PrintWriter salida = resp.getWriter();
-		salida.println("<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n"
-				+ "<title>Insert title here</title>\r\n" + "</head>\r\n" + "<body>\r\n" + "\r\n" + "<table>\r\n"
-				+ "  <thead>\r\n" + "    <tr>\r\n" + "      <th>ID</th>\r\n" + "      <th>Fecha de compra</th>\r\n"
-				+ "      <th>Tipo de pasaporte</th>\r\n" + "      <th>Costo unitario</th>\r\n"
-				+ "      <th>Cantidad de pasaportes</th>\r\n" + "      <th>Numero de atracciones</th>\r\n"
-				+ "    </tr>\r\n" + "  </thead>\r\n" + "  <tbody>\r\n");
-
-//				
-//				for (int i = 0; i < dao.getList().size(); i++) {
-//					salida.println("    <tr>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getId()+"</td>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getFecha_compra()+"</td>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getTipo_pasaporte()+"</td>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getCosto_unitario()+"</td>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getCantidad_pasaportes()+"</td>\r\n"
-//							+ "      <td>"+dao.getList().get(i).getNumero_atracciones()+"</td>\r\n"
-//							+ "    </tr>\r\n"
-//							
-//							);
-//				}
-
-		salida.println("\r\n" + "  </tbody>\r\n" + "</table>\r\n" + "\r\n" + "\r\n" + "</body>\r\n" + "</html>");
 
 		salida.close();
 
@@ -74,7 +55,7 @@ public class ServletGuardar extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
 
@@ -91,8 +72,9 @@ public class ServletGuardar extends HttpServlet {
 		}
 
 		String nombre = req.getParameter("nombre");
+		nombre.toLowerCase();
 		String fecha = req.getParameter("fecha");
-		System.out.println(fecha);
+		con.mostrar(fecha);
 		String colegio = req.getParameter("colegio");
 		String carrera = req.getParameter("carrera");
 		String estrato = req.getParameter("estrato");
@@ -175,110 +157,88 @@ public class ServletGuardar extends HttpServlet {
 		} else {
 			costo = "";
 		}
-		System.out.println(costo);
-		lista.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo + ""));
-//		writeFile(lista);
+		con.mostrar(costo);
 
-		System.out.println(nombre);
-		System.out.println(fecha);
-		System.out.println(edad);
-		System.out.println(colegio);
-		System.out.println(carrera);
-		System.out.println(estrato);
-		System.out.println(homologado);
-		System.out.println(costo);
+		con.mostrar(nombre);
+		con.mostrar(fecha);
+		con.mostrar(edad+"");
 
-		Part part = req.getPart("foto");
-		String filename = part.getSubmittedFileName();
-		String uploadPath = getServletContext().getRealPath("/" + "imagenes" + File.separator + filename);
-		File uploadDir = new File(uploadPath);
+		if (edad >= 14 && edad <= 200) {
 
-		int i = 1;
-		String filepath = uploadDir + File.separator + i + ".jpg";
-		File file = new File(filepath);
-		while (file.exists()) {
-			i++;
-			filepath = uploadDir + File.separator + i + ".jpg";
-			file = new File(filepath);
+			con.mostrar(colegio);
+			con.mostrar(carrera);
+			con.mostrar(estrato);
+			con.mostrar(homologado);
+			con.mostrar(costo);
 
-		}
+			Part filePart = req.getPart("foto");
+			String fileName = filePart.getSubmittedFileName();
 
-		try (InputStream input = part.getInputStream()) {
-			Files.copy(input, file.toPath());
-
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		
-
-		String csvfilepath =  "Aspirantes.csv";
-
-		File archivoCSV = new File(csvfilepath);
-
-	
-		if (!archivoCSV.exists()) {
-			try {
-				archivoCSV.createNewFile();
-				System.out.println("Archivo creado exitosamente.");
-			} catch (IOException e) {
-				System.out.println("Error al crear archivo.");
-				e.printStackTrace();
+			con.mostrar("fileName: " + fileName);
+			String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
+			File uploadDir = new File(uploadPath);
+			if (!uploadDir.exists()) {
+				uploadDir.mkdir();
 			}
+
+			int i = 0;
+			String filePath = uploadDir + File.separator + i + ".jpg";
+			File file = new File(filePath);
+			while (file.exists()) {
+				i++;
+				filePath = uploadDir + File.separator + i + ".jpg";
+				file = new File(filePath);
+
+			}
+			con.mostrar(file.getAbsolutePath());
+
+			try (InputStream input = filePart.getInputStream()) {
+				Files.copy(input, file.toPath());
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
+			lista.add(new AspiranteDTO(nombre, fecha, edad + "", colegio, carrera, estrato, homologado, costo + "",
+					file.getAbsolutePath()));
+			String csvfilepath = "Aspirantes.csv";
+
+			File archivoCSV = new File(csvfilepath);
+
+			if (!archivoCSV.exists()) {
+				try {
+					archivoCSV.createNewFile();
+					con.mostrar("Archivo creado exitosamente.");
+				} catch (IOException e) {
+					con.mostrar("Error al crear archivo.");
+					e.printStackTrace();
+				}
+			} else {
+				con.mostrar("El archivo ya existe.");
+			}
+
+			for (int j = 0; j < lista.size(); j++) {
+				con.mostrar(lista.get(j).getNombre());
+			}
+
+			f.escribirCSV(lista, archivoCSV.getAbsolutePath(), lista.size());
+
+			out.println("<html><body onload=\"showLoginError()\">  <h1>Guardado</h1> </body></html>");
+			resp.setHeader("Refresh", "0.5; URL=index.jsp");
+
+			req.getSession().setAttribute("lista", lista);
+
+			out.close();
+
+			con.mostrar(lista.size() + "  El tamano del la lista ");
+			con.mostrar(lista.toString());
+
 		} else {
-			System.out.println("El archivo ya existe.");
-		}
+			out.println("<html><body onload=\"showLoginError()\">  <h1>ERROR FECHA DE NACIMIENTO</h1> </body></html>");
+			resp.setHeader("Refresh", "1; URL=index.jsp");
+			out.close();
 
-	
-		
-		f.escribirCSV(lista, filepath,archivoCSV.getAbsolutePath());
-
-		out.println("<html><body onload=\"showLoginError()\">  <h1>Guardado</h1> </body></html>");
-		resp.setHeader("Refresh", "0.5; URL=index.jsp");
-
-		req.getSession().setAttribute("lista", lista);
-
-		out.close();
-
-		System.out.println(lista.size() + "  El tamano del la lista ");
-		System.out.println(lista.toString());
-
-	}
-
-	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html");
-		PrintWriter salida = resp.getWriter();
-		salida.println(
-				"<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n" + "<title>Insert title here</title>\r\n"
-						+ "</head>\r\n" + "<body>\r\n" + "<h1>ELIMINAR</h1>\r\n" + "</body>\r\n" + "</html>");
-		salida.close();
-
-		super.doDelete(req, resp);
-	}
-
-	public String contentBase(ArrayList<AspiranteDTO> list) {
-		String res = "";
-		for (AspiranteDTO s : list) {
-			res += s.toString();
-		}
-		return res;
-	}
-
-	public void convertidor(ArrayList<AspiranteDTO> lista, String aux) {
-
-		String userHomeFolder = System.getProperty("user.home");
-		String csvFilePath = userHomeFolder + "/Desktop/Aspirantes.csv";
-
-		try {
-			PrintWriter writer = new PrintWriter(new FileWriter(csvFilePath, true));
-			writer.println(d.listar(lista) + ";" + aux + "\n");
-			writer.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
-
 
 }

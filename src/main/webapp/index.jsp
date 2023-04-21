@@ -28,6 +28,7 @@
 
 <body>
 
+
 	<div class="container">
 
 		<section class="form-register">
@@ -173,6 +174,9 @@
 						class="form-control-file" accept=".jpg" name="foto" id="foto"
 						accept="image/png,image/jpeg,image/bmp,image/gif,image/jpg,image/tif,image/tiff"
 						required>
+
+
+
 				</div>
 
 				<div class="row justify-content-center">
@@ -180,10 +184,24 @@
 				</div>
 
 			</form>
+
+
+
 		</div>
 
 	</section>
-
+<footer class="bg-dark text-white">
+   <div class="container text-center">
+      <div class="row">
+         <div class="col-md-6">
+            <p class="m-0">&copy; 2023 Universidad El Bosque. Todos los derechos reservados.</p>
+         </div>
+         <div class="col-md-6">
+            <a href="https://www.unbosque.edu.co/" target="_blank" class="text-white float-md-end">Universidad El Bosque</a>
+         </div>
+      </div>
+   </div>
+</footer>
 </body>
 
 </html>

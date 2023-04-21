@@ -105,19 +105,20 @@ public class FileHandler {
 		return aux;
 	}
 
-	public void escribirCSV(ArrayList<AspiranteDTO> lista, String aux,String url) {
+	public void escribirCSV(ArrayList<AspiranteDTO> lista,String url,int size) {
 
 		try {
 
 
 
 			try (PrintWriter writer = new PrintWriter(new FileWriter(url), true)) {
-				for (int i = 0; i < lista.size(); i++) {
+				for (int i = 0; i < size; i++) {
 
-					writer.println(d.listar(lista) + ";" + aux + "\n");
-					writer.close();
-					writer.flush();
+					writer.println(lista.get(i).toString() );
+				
 				}
+				writer.close();
+				writer.flush();
 
 			} catch (IOException e) {
 				e.printStackTrace();

@@ -61,9 +61,9 @@ public class AspiranteDAO {
         }
         return -1;
     }
-    public void agregarAspirante(String nombre, String fecha, String edad, String colegio, String carrera,
-            String estrato, String homologado, String costo) {
-        list.add(new AspiranteDTO(nombre, fecha, edad, colegio, carrera, estrato, homologado, costo));
+    public void agregarAspirante(String nombre, String fecha, String edad, String colegio, String carrera, String estrato,
+			String homologado, String costo, String url) {
+        list.add(new AspiranteDTO(nombre, fecha, edad, colegio, carrera, estrato, homologado, costo,url));
 
     }
 
