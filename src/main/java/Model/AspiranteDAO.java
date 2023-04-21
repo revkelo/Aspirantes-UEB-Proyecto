@@ -9,16 +9,13 @@ import model.persistance.FileHandler;
 
 
 public class AspiranteDAO {
-	private ArrayList<AspiranteDTO> list;
+    private ArrayList<AspiranteDTO> list;
 
-	
+    public AspiranteDAO() {
+        list = new ArrayList<AspiranteDTO>();
 
-
-	public AspiranteDAO() {
-		list = new ArrayList<AspiranteDTO>();
-
-	}
-
+    }
+    
 
 	
 	public String listar(ArrayList<AspiranteDTO> lista) {
@@ -31,38 +28,51 @@ public class AspiranteDAO {
 		return rta;
 	}
 
-	public AspiranteDTO buscar(String aux, ArrayList<AspiranteDTO> lista) {
+    public boolean delete(int index, ArrayList<AspiranteDTO> list) {
+        boolean found = false;
+        try {
+            list.remove(index);
+            found = true;
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            found = false;
+        }
+        return found;
+    }
+    public boolean actualizar(int index, ArrayList<AspiranteDTO> list) {
+        try {
+            list.get(index);
+            return true;
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
-		AspiranteDTO encontrado = null;
+    public int buscar(String aux, ArrayList<AspiranteDTO> list) {
 
-		if (!lista.isEmpty()) {
-			for (int i = 0; i < lista.size(); i++) {
-				if (lista.get(i).getNombre().equals(aux)) {
-					encontrado = lista.get(i);
-					return encontrado;
-				}
-			}
-		}
-		return encontrado;
-	}
-	
+        for (int i = 0; i < list.size(); i++) {
 
+            if (aux.equals(list.get(i).getNombre())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public void agregarAspirante(String nombre, String fecha, String edad, String colegio, String carrera,
+            String estrato, String homologado, String costo) {
+        list.add(new AspiranteDTO(nombre, fecha, edad, colegio, carrera, estrato, homologado, costo));
 
-	
+    }
 
-	public void agregarAspirante(String nombre, String fecha, String edad, String colegio, String carrera,
-			String estrato, String homologado, String costo) {
+    public ArrayList<AspiranteDTO> getList() {
+        return list;
+    }
 
-		list.add(new AspiranteDTO(nombre, fecha, edad, colegio, carrera, estrato, homologado, costo));
-
-	}
-
-	public ArrayList<AspiranteDTO> getList() {
-		return list;
-	}
-
-	public void setList(ArrayList<AspiranteDTO> list) {
-		this.list = list;
-	}
+    public void setList(ArrayList<AspiranteDTO> list) {
+        this.list = list;
+    }
 
 }

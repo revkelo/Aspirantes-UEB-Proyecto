@@ -15,25 +15,28 @@
 	integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 	crossorigin="anonymous"></script>
 
+<link rel="stylesheet" href="./css/style.css">
+
+
 </head>
 <body>
-	<div class="container text-center">
+	<div class="form-register text-center">
 		<h1>Administrativo</h1>
 	</div>
 
 	<div class="container">
-		<div class="row">
+		<div class="row form-register">
 			<!-- Formulario de Medicina -->
-			<div class="col">
+			<div class="form-register">
 				<div class="card">
 					<div class="card-header">
 						<h3>Listar por carrera</h3>
 					</div>
 					<div class="card-body">
-					<form enctype="multipart/form-data"
+						<form enctype="multipart/form-data"
 							name="Formulario ServeletGuardar" method="get"
 							action="/UEB1/listar">
-							<div class="form-group">
+							<div class="controls">
 								<label for="selectCarrera">Carrera:</label> <select
 									class="form-control" id="selectCarrera" name="carrera">
 
@@ -102,14 +105,14 @@
 
 								</select>
 							</div>
-							<button type="submit" class="btn btn-primary">Listar</button>
+							<button type="submit" class="btn btn-outline-success">Listar</button>
 						</form>
 					</div>
 				</div>
 			</div>
 
 			<!-- Formulario de todas las carreras -->
-			<div class="col">
+			<div class="form-register">
 				<div class="card">
 					<div class="card-header">
 						<h3>Listar todas las carreras</h3>
@@ -118,7 +121,7 @@
 						<form enctype="multipart/form-data"
 							name="Formulario ServeletGuardar" method="get"
 							action="/UEB1/tabla">
-							<button type="submit" class="btn btn-primary">Listar
+							<button type="submit" class="btn btn-outline-success">Listar
 								todas las carreras</button>
 						</form>
 					</div>
@@ -126,27 +129,28 @@
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-md-6">
+		<div class="row form-register">
+			<div class="">
 				<!-- Formulario de Eliminar -->
 				<div class="card">
 					<div class="card-header">
 						<h3>Eliminar</h3>
 					</div>
 					<div class="card-body">
-						<form class="form" action="/UEB1/tabla" method="post">
-							<input type="hidden" name="_method"  value= "DELETE">
-							<div class="form-group">
-								<label for="inputIdEliminar">ID:</label> <input type="text"
-									class="form-control" id="inputIdEliminar" name="id">
+						<form class="form" action="/UEB1/tabla" method="POST">
+							<input type="hidden" name="_method" value="DELETE">
+							<div class="controls">
+								<label for="inputIdEliminar">Nombre completo:</label> <input
+									type="text" class="form-control" id="inputNobreEliminar"
+									name="inputNobreEliminar">
 							</div>
-							<button type="submit" class="btn btn-danger">Eliminar</button>
+							<button type="submit" class="btn btn-outline-success">Eliminar</button>
 						</form>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-6 form-register">
 				<!-- Formulario de Actualizar -->
 				<div class="card">
 					<div class="card-header">
@@ -155,16 +159,40 @@
 					<div class="card-body">
 						<form class="form" action="/UEB1/tabla" method="post">
 							<input type="hidden" name="_method" value="PUT">
-							<div class="form-group">
+							<div class="controls">
 								<label for="inputIdActualizar">ID:</label> <input type="text"
 									class="form-control" id="inputIdActualizar" name="id">
 							</div>
-							<div class="form-group">
-								<label for="inputNombreActualizar">Nombre:</label> <input
-									type="text" class="form-control" id="inputNombreActualizar"
-									name="nombre">
+							<div class="controls">
+								<label for="opcactualizar">Selecciona el dato que desea
+									actualizar:</label> <select id="opcactualizar" name="opcactualizar"
+									required>
+
+									<option value="nombre">Nombre completo</option>
+									<option value="fecha nac">Fecha de nacimiento</option>
+									<option value="colegio">Colegio donde se graduo</option>
+									<option value="carrera">Carrera</option>
+									<option value="estrato">Estrato</option>
+
+								</select>
+
+								<div id="inputs">
+									<input type="text" class="controls" id="etinombre"
+										placeholder="Ingrese el nombre completo"
+										style="display: none;" required> <input type="date"
+										class="form-control" id="etifecha" name="etifecha"
+										placeholder="Ingresa tu fecha de nacimiento" required
+										style="display: none;"> <input type="text"
+										class="form-control" id="eticolegio" name="eticolegio"
+										placeholder="Ingresa el nombre de tu colegio" required
+										style="display: none;"> <input type="text" id="input4"
+										style="display: none;"> <input type="text" id="input5"
+										style="display: none;"> <input type="text" id="input6"
+										style="display: none;">
+								</div>
+
 							</div>
-							<button type="submit" class="btn btn-primary">Actualizar</button>
+							<button type="submit" class="btn btn-outline-success">Actualizar</button>
 						</form>
 					</div>
 				</div>

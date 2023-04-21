@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import model.AspiranteDAO;
 import model.AspiranteDTO;
 import model.persistance.FileHandler;
 
@@ -18,9 +19,11 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ServletTabla extends HttpServlet {
 
 	private FileHandler f;
+	private AspiranteDAO dao;
 
 	public ServletTabla() {
 	f= new FileHandler();
+	dao = new AspiranteDAO();
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -100,6 +103,10 @@ public class ServletTabla extends HttpServlet {
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		PrintWriter salida = resp.getWriter();
+
+        ArrayList<AspiranteDTO> lista = (ArrayList<AspiranteDTO>) req.getSession().getAttribute("lista");
+
+        String name = req.getParameter("inputNobreEliminar");
 		salida.println(
 				"<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n" + "<title>Insert title here</title>\r\n"
 						+ "</head>\r\n" + "<body>\r\n" + "<h1>actualizar</h1>\r\n" + "</body>\r\n" + "</html>");
@@ -109,10 +116,15 @@ public class ServletTabla extends HttpServlet {
 
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html");
-		PrintWriter salida = resp.getWriter();
-		ArrayList<AspiranteDTO> lista = (ArrayList<AspiranteDTO>) req.getSession().getAttribute("lista");
-		System.out.println(lista.get(0).getNombre());
+        resp.setContentType("text/html");
+        PrintWriter salida = resp.getWriter();
+        ArrayList<AspiranteDTO> lista = (ArrayList<AspiranteDTO>) req.getSession().getAttribute("lista");
+
+        String name = req.getParameter("inputNobreEliminar");
+
+        dao.delete(dao.buscar(name, lista), lista);
+
+        System.out.println(lista.size() + "NAME: " + name);
 		salida.println(
 				"<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n" + "<title>Insert title here</title>\r\n"
 						+ "</head>\r\n" + "<body>\r\n" + "<h1>Eliminado</h1>\r\n" + "</body>\r\n" + "</html>");
