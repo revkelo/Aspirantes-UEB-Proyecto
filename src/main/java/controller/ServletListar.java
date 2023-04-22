@@ -16,8 +16,28 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
+/**
+ * 
+ * Esta clase implementa un servlet que se utiliza para listar en un tabla por carrera los
+ * Aspirantes
+ */
+
 public class ServletListar extends HttpServlet {
 
+	
+	/**
+
+	Método que maneja la petición GET y muestra la información de los aspirantes en una tabla HTML por carrera.
+
+	@param req objeto HttpServletRequest que contiene la información de la solicitud del cliente.
+
+	@param resp objeto HttpServletResponse que contiene la información de la respuesta del servidor.
+
+	@throws ServletException si ocurre un error en el servlet.
+
+	@throws IOException si ocurre un error de entrada/salida al manejar la petición.
+	*/
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int cant = 0;

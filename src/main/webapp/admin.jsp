@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Formularios con Bootstrap</title>
+<title>Administrador</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -121,6 +121,8 @@
 						<form enctype="multipart/form-data"
 							name="Formulario ServeletGuardar" method="get"
 							action="/UEB1/tabla">
+							<input type="hidden" name="_method" value="GET">
+
 							<button type="submit" class="btn btn-outline-success">Listar
 								todas las carreras</button>
 						</form>

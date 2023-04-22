@@ -16,39 +16,58 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * Servlet implementation class ServletTabla
+ * 
+ * Esta clase se encarga de manejar las solicitudes HTTP y generar una tabla HTML que muestra los datos de los aspirantes
+ */
 public class ServletTabla extends HttpServlet {
 
+	// Instancias de las clases necesarias
 	private FileHandler f;
 	private AspiranteDAO dao;
 	private Console con;
 
+	/**
+	 * Constructor por defecto de la clase
+	 * 
+	 * Se crean las instancias de las clases necesarias
+	 */
 	public ServletTabla() {
-	f= new FileHandler();
-	dao = new AspiranteDAO();
-	con = new Console();
+		f = new FileHandler();
+		dao = new AspiranteDAO();
+		con = new Console();
 	}
 
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	/**
+	 * Método service para manejar las solicitudes HTTP
+	 * 
+	 * Se verifica si la solicitud es de tipo DELETE, PUT, GET o POST, y se ejecuta el método correspondiente
+	 */
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if ("DELETE".equals(request.getParameter("_method"))) {
 			// Manejar la solicitud DELETE
 			doDelete(request, response);
 		} else if ("PUT".equals(request.getParameter("_method"))) {
 			// Manejar la solicitud PUT
 			doPut(request, response);
+		} else if  ("GET".equals(request.getParameter("_method"))) {
+			// Manejar la solicitud GET
+			doGet(request, response);
+			
 		} else {
 			// Manejar la solicitud POST
 			doPost(request, response);
 		}
 	}
 
+	/**
+	 * Método doGet para manejar las solicitudes HTTP de tipo GET
+	 * 
+	 * Se genera una tabla HTML que muestra los datos de los aspirantes
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		con.mostrar("----------------------------------------------------------------------------");
 		ArrayList<AspiranteDTO> lista = (ArrayList<AspiranteDTO>) req.getSession().getAttribute("lista");
@@ -98,9 +117,36 @@ public class ServletTabla extends HttpServlet {
 		salida.println("    </tbody>\r\n" + "  </table>\r\n" + "\r\n" + "\r\n" + "</body>\r\n" + "\r\n" + "</html>");
 
 		salida.close();
+	}
+	/**
+
+	Procesa las solicitudes HTTP POST para la gestión de los datos de los aspirantes.
+	@param req La solicitud HTTP recibida.
+	@param resp La respuesta HTTP que se enviará.
+	@throws ServletException si se produce un error en la gestión de la solicitud.
+	@throws IOException si se produce un error de E/S al enviar la respuesta.
+	*/
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 
 	}
 
+	/**
+
+	Este método se ejecuta cuando se recibe una petición PUT desde un cliente.
+
+	Permite actualizar información en el servidor.
+
+	@param req Objeto HttpServletRequest que contiene información sobre la solicitud del cliente.
+
+	@param resp Objeto HttpServletResponse que se utiliza para enviar la respuesta al cliente.
+
+	@throws ServletException si ocurre un error durante la ejecución del servlet.
+
+	@throws IOException si ocurre un error de entrada/salida durante la ejecución del servlet.
+	*/
+	
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
@@ -115,7 +161,20 @@ public class ServletTabla extends HttpServlet {
 
 		salida.close();
 	}
+	/**
 
+	Este método se ejecuta cuando se recibe una petición DELETE desde un cliente.
+
+	Permite eliminar información en el servidor.
+
+	@param req Objeto HttpServletRequest que contiene información sobre la solicitud del cliente.
+
+	@param resp Objeto HttpServletResponse que se utiliza para enviar la respuesta al cliente.
+
+	@throws ServletException si ocurre un error durante la ejecución del servlet.
+
+	@throws IOException si ocurre un error de entrada/salida durante la ejecución del servlet.
+	*/
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");

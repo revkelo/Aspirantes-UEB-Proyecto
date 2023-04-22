@@ -31,31 +31,74 @@ import jakarta.servlet.http.Part;
 import java.io.ByteArrayOutputStream;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 104 * 1024 * 10, maxRequestSize = 1024 * 1024 * 100)
+/**
+ * 
+ * Esta clase implementa un servlet que se utiliza para guardar datos de un
+ * Aspirante
+ */
 public class ServletGuardar extends HttpServlet {
 
 	private AspiranteDAO d;
 	private Console con;
 	private FileHandler f;
 
+	/**
+	 * 
+	 * Constructor de la clase ServletGuardar que inicializa las variables
+	 * necesarias
+	 */
 	public ServletGuardar() {
 		d = new AspiranteDAO();
 		f = new FileHandler();
 		con = new Console();
-
 	}
 
+	/**
+	 * 
+	 * Método que se ejecuta cuando se realiza una petición GET al servlet
+	 * 
+	 * @param req  objeto HttpServletRequest que representa la petición HTTP
+	 *             recibida
+	 * 
+	 * @param resp objeto HttpServletResponse que representa la respuesta HTTP que
+	 *             se enviará al cliente
+	 * 
+	 * @throws ServletException si se produce un error en el servlet
+	 * 
+	 * @throws IOException      si se produce un error de entrada/salida
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		PrintWriter salida = resp.getWriter();
 
 		salida.close();
-
 	}
+
+
+
+	/**
+	 * 
+	 * Método que se ejecuta al enviar el formulario con método POST.
+	 * 
+	 * Recibe un objeto HttpServletRequest con la información de la solicitud HTTP
+	 * 
+	 * y un objeto HttpServletResponse con la información de la respuesta HTTP.
+	 * 
+	 * @param req  objeto HttpServletRequest con la información de la solicitud
+	 *             HTTP.
+	 * 
+	 * @param resp objeto HttpServletResponse con la información de la respuesta
+	 *             HTTP.
+	 * 
+	 * @throws ServletException si ocurre un error en la ejecución del servlet.
+	 * 
+	 * @throws IOException      si ocurre un error en la entrada o salida de datos.
+	 */
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
 
@@ -161,7 +204,7 @@ public class ServletGuardar extends HttpServlet {
 
 		con.mostrar(nombre);
 		con.mostrar(fecha);
-		con.mostrar(edad+"");
+		con.mostrar(edad + "");
 
 		if (edad >= 14 && edad <= 200) {
 
