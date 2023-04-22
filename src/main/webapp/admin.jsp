@@ -163,7 +163,7 @@
                             <input type="hidden" name="_method" value="PUT">
                             <div class="controls">
                                 <label for="inputIdActualizar">Ingrese el nombre para buscar los datos:</label> <input type="text"
-                                    class="form-control" id="inputIdActualizar" name="id">
+                                    class="form-control" id="inputIdActualizar" name="inputIdActualizar">
                             </div>
                             <div class="controls">
                                 <label for="opcactualizar">Ingrese el colegio para actualizar:</label> <input type="text"
