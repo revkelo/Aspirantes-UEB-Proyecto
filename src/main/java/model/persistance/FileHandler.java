@@ -25,25 +25,41 @@ import com.opencsv.CSVWriter;
  * Clase FileHandler del proyecto.
  *
  * @author Daniela
- * @author Jose
  * @author Kevin
  * @author Nicolas
  */
 
 public class FileHandler {
 
+	/**
+	 * Atributo AspiranteDAO nombrado d
+	 */
 	private AspiranteDAO d;
-
+	/**
+	 * Atributo statico Scanner nombrado reader
+	 */
 	private static Scanner reader;
-
+	/**
+	 * Atributo static para asignar ','
+	 */
 	public static final String CSV_SEPARATOR = ",";
-
+	/**
+	 * Atributo tipo File nombrado file
+	 */
 	private static File file;
 
+	/**
+	 * Metodo construvtor
+	 */
 	public FileHandler() {
 		d = new AspiranteDAO();
 	}
 
+	/**
+	 * Metodo tipo String que comprueba el archivo
+	 * 
+	 * @return aux variable tipo String
+	 */
 	public String comprobarArchivo() {
 
 		String aux;
@@ -63,10 +79,6 @@ public class FileHandler {
 		File archivoCSV2 = new File(csvfilepath2);
 
 		File archivoCSV3 = new File(csvfilepath3);
-		
-		
-		
-	
 
 		if (!archivoCSV.exists()) {
 			aux = "0";
@@ -105,17 +117,22 @@ public class FileHandler {
 		return aux;
 	}
 
-	public void escribirCSV(ArrayList<AspiranteDTO> lista,String url,int size) {
+	/**
+	 * Metodo para escribir en el csv
+	 * 
+	 * @param lista ArrayList con lista de aspirantes
+	 * @param url   atributo tipo String
+	 * @param size  atributo tipo int
+	 */
+	public void escribirCSV(ArrayList<AspiranteDTO> lista, String url, int size) {
 
 		try {
-
-
 
 			try (PrintWriter writer = new PrintWriter(new FileWriter(url), true)) {
 				for (int i = 0; i < size; i++) {
 
-					writer.println(lista.get(i).toString() );
-				
+					writer.println(lista.get(i).toString());
+
 				}
 				writer.close();
 				writer.flush();

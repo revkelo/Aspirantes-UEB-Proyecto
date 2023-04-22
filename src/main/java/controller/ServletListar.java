@@ -18,32 +18,42 @@ import jakarta.servlet.http.Part;
 
 /**
  * 
- * Esta clase implementa un servlet que se utiliza para listar en un tabla por carrera los
- * Aspirantes
+ * Esta clase implementa un servlet que se utiliza para listar en un tabla por
+ * carrera los Aspirantes
+ * 
+ * @author Kevin
+ * @author Daniela
+ * @author Nicolas
  */
 
 public class ServletListar extends HttpServlet {
 
-	
 	/**
+	 * Atributo tipo final long para el id que serializara
+	 */
+	private static final long serialVersionUID = 1L;
 
-	Método que maneja la petición GET y muestra la información de los aspirantes en una tabla HTML por carrera.
+	/**
+	 * Método que maneja la petición GET y muestra la información de los aspirantes
+	 * en una tabla HTML por carrera.
+	 * 
+	 * @param req  objeto HttpServletRequest que contiene la información de la
+	 *             solicitud del cliente.
+	 * 
+	 * @param resp objeto HttpServletResponse que contiene la información de la
+	 *             respuesta del servidor.
+	 * 
+	 * @throws ServletException si ocurre un error en el servlet.
+	 * 
+	 * @throws IOException      si ocurre un error de entrada/salida al manejar la
+	 *                          petición.
+	 */
 
-	@param req objeto HttpServletRequest que contiene la información de la solicitud del cliente.
-
-	@param resp objeto HttpServletResponse que contiene la información de la respuesta del servidor.
-
-	@throws ServletException si ocurre un error en el servlet.
-
-	@throws IOException si ocurre un error de entrada/salida al manejar la petición.
-	*/
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int cant = 0;
 		resp.setContentType("text/html");
 		ArrayList<AspiranteDTO> lista = (ArrayList<AspiranteDTO>) req.getSession().getAttribute("lista");
-		System.out.println();
 		PrintWriter salida = resp.getWriter();
 
 		String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
@@ -114,6 +124,24 @@ public class ServletListar extends HttpServlet {
 		}
 	}
 
+	/**
+	 * 
+	 * Método que se ejecuta al enviar el formulario con método POST.
+	 * 
+	 * Recibe un objeto HttpServletRequest con la información de la solicitud HTTP
+	 * 
+	 * y un objeto HttpServletResponse con la información de la respuesta HTTP.
+	 * 
+	 * @param req  objeto HttpServletRequest con la información de la solicitud
+	 *             HTTP.
+	 * 
+	 * @param resp objeto HttpServletResponse con la información de la respuesta
+	 *             HTTP.
+	 * 
+	 * @throws ServletException si ocurre un error en la ejecución del servlet.
+	 * 
+	 * @throws IOException      si ocurre un error en la entrada o salida de datos.
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
