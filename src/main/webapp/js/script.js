@@ -75,13 +75,5 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-const formulario = document.querySelector('form');
-const imagenMostrada = document.querySelector('#imagenMostrada');
 
-formulario.addEventListener('submit', (evento) => {
-  evento.preventDefault(); // Evita que el formulario se envíe automáticamente
-  const archivo = document.querySelector('input[type=file]').files[0];
-  const urlImagen = URL.createObjectURL(archivo);
-  imagenMostrada.src = urlImagen;
-});
 

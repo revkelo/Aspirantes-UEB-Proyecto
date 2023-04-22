@@ -47,6 +47,8 @@ public class ServletAdmin extends HttpServlet {
 			PrintWriter out = resp.getWriter();
 			out.println("<html><body onload=\"showLoginError()\">  <h1>ERROR</h1> </body></html>");
 			resp.setHeader("Refresh", "0; URL=login.jsp");
+			
+			out.close();
 		}
 	}
 }

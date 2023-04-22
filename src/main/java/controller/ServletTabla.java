@@ -62,10 +62,17 @@ public class ServletTabla extends HttpServlet {
 	}
 
 	/**
-	 * Método doGet para manejar las solicitudes HTTP de tipo GET
-	 * 
-	 * Se genera una tabla HTML que muestra los datos de los aspirantes
-	 */
+
+	Método que maneja la petición GET y muestra la información de los aspirantes en una tabla HTML.
+
+	@param req objeto HttpServletRequest que contiene la información de la solicitud del cliente.
+
+	@param resp objeto HttpServletResponse que contiene la información de la respuesta del servidor.
+
+	@throws ServletException si ocurre un error en el servlet.
+
+	@throws IOException si ocurre un error de entrada/salida al manejar la petición.
+	*/
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
@@ -147,18 +154,27 @@ public class ServletTabla extends HttpServlet {
 	@throws IOException si ocurre un error de entrada/salida durante la ejecución del servlet.
 	*/
 	
+       
+ 
+    
+	
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html");
-		PrintWriter salida = resp.getWriter();
+		 resp.setContentType("text/html");
+	        PrintWriter salida = resp.getWriter();
 
-        ArrayList<AspiranteDTO> lista = (ArrayList<AspiranteDTO>) req.getSession().getAttribute("lista");
+	        ArrayList<AspiranteDTO> lista = (ArrayList<AspiranteDTO>) req.getSession().getAttribute("lista");
 
-        String name = req.getParameter("inputNobreEliminar");
-		salida.println(
-				"<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n" + "<title>Insert title here</title>\r\n"
-						+ "</head>\r\n" + "<body>\r\n" + "<h1>actualizar</h1>\r\n" + "</body>\r\n" + "</html>");
+	        String name = req.getParameter("inputIdActualizar");
+	        String nuevo = req.getParameter("opcactualizar");
 
+	        dao.actualizar(name, nuevo, lista);
+
+	        System.out.println(lista.size());
+
+	        System.out.println("colegio" + lista.get(0).getColegio());
+			salida.println("<html><body onload=\"showLoginError()\">  <h1>Actualizado</h1> </body></html>");
+			resp.setHeader("Refresh", "1; URL=admin.jsp");
 		salida.close();
 	}
 	/**
@@ -186,10 +202,8 @@ public class ServletTabla extends HttpServlet {
         dao.delete(dao.buscar(name, lista), lista);
 
         con.mostrar(lista.size() + "NAME: " + name);
-		salida.println(
-				"<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n" + "<title>Insert title here</title>\r\n"
-						+ "</head>\r\n" + "<body>\r\n" + "<h1>Eliminado</h1>\r\n" + "</body>\r\n" + "</html>");
-
+		salida.println("<html><body onload=\"showLoginError()\">  <h1>Eliminado</h1> </body></html>");
+		resp.setHeader("Refresh", "1; URL=admin.jsp");
 		salida.close();
 	}
 
