@@ -1,16 +1,66 @@
+/**
+ * Paquete model
+ */
 package model;
 
+/**
+ * Clase AspiranteDTO del proyecto
+ * 
+ * @author Kevin
+ * @author Daniela
+ * @author Nicolas
+ */
 public class AspiranteDTO {
+	/**
+	 * Atributo tipo String nombrado nombre
+	 */
 	private String nombre;
+	/**
+	 * Atributo tipo String nombrado fecha
+	 */
 	private String fecha;
+	/**
+	 * Atributo tipo String nombrado edad
+	 */
 	private String edad;
+	/**
+	 * Atributo tipo String nombrado colegio
+	 */
 	private String colegio;
+	/**
+	 * Atributo tipo String nombrado carrera
+	 */
 	private String carrera;
+	/**
+	 * Atributo tipo String nombrado estrato
+	 */
 	private String estrato;
+	/**
+	 * Atributo tipo String nombrado homologado
+	 */
 	private String homologado;
+	/**
+	 * Atributo tipo String nombrado costo
+	 */
 	private String costo;
+	/**
+	 * Atributo tipo String nombrado url
+	 */
 	private String url;
 
+	/**
+	 * Metodo AspitanteDTO
+	 * 
+	 * @param nombre     variable tipo String
+	 * @param fecha      variable tipo String
+	 * @param edad       variable tipo String
+	 * @param colegio    variable tipo String
+	 * @param carrera    variable tipo String
+	 * @param estrato    variable tipo String
+	 * @param homologado variable tipo String
+	 * @param costo      variable tipo String
+	 * @param url        variable tipo String
+	 */
 	public AspiranteDTO(String nombre, String fecha, String edad, String colegio, String carrera, String estrato,
 			String homologado, String costo, String url) {
 		super();
@@ -25,11 +75,16 @@ public class AspiranteDTO {
 		this.url = url;
 	}
 
+	/**
+	 * Metodo constructor
+	 */
 	public AspiranteDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
+	 * El metodo get funciona para tomar o llamar el atributo
+	 * 
 	 * @return the nombre
 	 */
 	public String getNombre() {
@@ -37,6 +92,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo set funciona para actualizar el atributo
+	 * 
 	 * @param nombre the nombre to set
 	 */
 	public void setNombre(String nombre) {
@@ -44,6 +101,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo get funciona para tomar o llamar el atributo
+	 * 
 	 * @return the fecha
 	 */
 	public String getFecha() {
@@ -51,6 +110,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo set funciona para actualizar el atributo
+	 * 
 	 * @param fecha the fecha to set
 	 */
 	public void setFecha(String fecha) {
@@ -58,6 +119,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo get funciona para tomar o llamar el atributo
+	 * 
 	 * @return the colegio
 	 */
 	public String getColegio() {
@@ -65,6 +128,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo set funciona para actualizar el atributo
+	 * 
 	 * @param colegio the colegio to set
 	 */
 	public void setColegio(String colegio) {
@@ -72,6 +137,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo get funciona para tomar o llamar el atributo
+	 * 
 	 * @return the carrera
 	 */
 	public String getCarrera() {
@@ -79,6 +146,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo set funciona para actualizar el atributo
+	 * 
 	 * @param carrera the carrera to set
 	 */
 	public void setCarrera(String carrera) {
@@ -86,6 +155,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo get funciona para tomar o llamar el atributo
+	 * 
 	 * @return the estrato
 	 */
 	public String getEstrato() {
@@ -93,6 +164,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo set funciona para actualizar el atributo
+	 * 
 	 * @param estrato the estrato to set
 	 */
 	public void setEstrato(String estrato) {
@@ -100,6 +173,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo get funciona para tomar o llamar el atributo
+	 * 
 	 * @return the homologado
 	 */
 	public String getHomologado() {
@@ -107,6 +182,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo set funciona para actualizar el atributo
+	 * 
 	 * @param homologado the homologado to set
 	 */
 	public void setHomologado(String homologado) {
@@ -114,6 +191,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo get funciona para tomar o llamar el atributo
+	 * 
 	 * @return the costo
 	 */
 	public String getCosto() {
@@ -121,6 +200,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo set funciona para actualizar el atributo
+	 * 
 	 * @param costo the costo to set
 	 */
 	public void setCosto(String costo) {
@@ -128,6 +209,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo get funciona para tomar o llamar el atributo
+	 * 
 	 * @return the edad
 	 */
 	public String getEdad() {
@@ -135,6 +218,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo set funciona para actualizar el atributo
+	 * 
 	 * @param edad the edad to set
 	 */
 	public void setEdad(String edad) {
@@ -142,6 +227,8 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo get funciona para tomar o llamar el atributo
+	 * 
 	 * @return the url
 	 */
 	public String getUrl() {
@@ -149,12 +236,19 @@ public class AspiranteDTO {
 	}
 
 	/**
+	 * El metodo set funciona para actualizar el atributo
+	 * 
 	 * @param url the url to set
 	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
 
+	/**
+	 * Metodo tipo String toString
+	 * 
+	 * @return res variable tipo String
+	 */
 	@Override
 	public String toString() {
 		String res = "";

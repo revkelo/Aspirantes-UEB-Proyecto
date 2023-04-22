@@ -43,7 +43,6 @@ public class ServletListar extends HttpServlet {
 		int cant = 0;
 		resp.setContentType("text/html");
 		ArrayList<AspiranteDTO> lista = (ArrayList<AspiranteDTO>) req.getSession().getAttribute("lista");
-		System.out.println();
 		PrintWriter salida = resp.getWriter();
 
 		String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
@@ -114,6 +113,24 @@ public class ServletListar extends HttpServlet {
 		}
 	}
 
+	/**
+	 * 
+	 * Método que se ejecuta al enviar el formulario con método POST.
+	 * 
+	 * Recibe un objeto HttpServletRequest con la información de la solicitud HTTP
+	 * 
+	 * y un objeto HttpServletResponse con la información de la respuesta HTTP.
+	 * 
+	 * @param req  objeto HttpServletRequest con la información de la solicitud
+	 *             HTTP.
+	 * 
+	 * @param resp objeto HttpServletResponse con la información de la respuesta
+	 *             HTTP.
+	 * 
+	 * @throws ServletException si ocurre un error en la ejecución del servlet.
+	 * 
+	 * @throws IOException      si ocurre un error en la entrada o salida de datos.
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
