@@ -171,7 +171,7 @@ public class ServletTabla extends HttpServlet {
 	        dao.actualizar(name, nuevo, lista);
 
 	        System.out.println(lista.size());
-
+	        System.out.println("colegioaa" + lista.get(0).getColegio());
 	        System.out.println("colegio" + lista.get(0).getColegio());
 			salida.println("<html><body onload=\"showLoginError()\">  <h1>Actualizado</h1> </body></html>");
 			resp.setHeader("Refresh", "1; URL=admin.jsp");
