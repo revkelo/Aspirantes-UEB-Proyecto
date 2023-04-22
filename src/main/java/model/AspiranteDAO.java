@@ -40,9 +40,13 @@ public class AspiranteDAO {
         }
         return found;
     }
-    public boolean actualizar(int index, ArrayList<AspiranteDTO> list) {
+
+    public boolean actualizar(String aux1 , String aux, ArrayList<AspiranteDTO> list ) {
         try {
-            list.get(index);
+            int one = buscar(aux1,list);
+
+            list.get(one).setColegio(aux);
+
             return true;
         } catch (IndexOutOfBoundsException e) {
             return false;

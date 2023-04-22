@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Formularios con Bootstrap</title>
+<title>Administrador</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -121,6 +121,8 @@
 						<form enctype="multipart/form-data"
 							name="Formulario ServeletGuardar" method="get"
 							action="/UEB1/tabla">
+							<input type="hidden" name="_method" value="GET">
+
 							<button type="submit" class="btn btn-outline-success">Listar
 								todas las carreras</button>
 						</form>
@@ -154,46 +156,22 @@
 				<!-- Formulario de Actualizar -->
 				<div class="card">
 					<div class="card-header">
-						<h3>Actualizar</h3>
-					</div>
-					<div class="card-body">
-						<form class="form" action="/UEB1/tabla" method="post">
-							<input type="hidden" name="_method" value="PUT">
-							<div class="controls">
-								<label for="inputIdActualizar">ID:</label> <input type="text"
-									class="form-control" id="inputIdActualizar" name="id">
-							</div>
-							<div class="controls">
-								<label for="opcactualizar">Selecciona el dato que desea
-									actualizar:</label> <select id="opcactualizar" name="opcactualizar"
-									required>
+					<h3>Actualizar</h3>
+                    </div>
+                    <div class="card-body">
+                        <form class="form" action="/UEB1/tabla" method="post">
+                            <input type="hidden" name="_method" value="PUT">
+                            <div class="controls">
+                                <label for="inputIdActualizar">Ingrese el nombre para buscar los datos:</label> <input type="text"
+                                    class="form-control" id="inputIdActualizar" name="id">
+                            </div>
+                            <div class="controls">
+                                <label for="opcactualizar">Ingrese el colegio para actualizar:</label> <input type="text"
+                                    class="form-control" id="opcactualizar" name="opcactualizar">
 
-									<option value="nombre">Nombre completo</option>
-									<option value="fecha nac">Fecha de nacimiento</option>
-									<option value="colegio">Colegio donde se graduo</option>
-									<option value="carrera">Carrera</option>
-									<option value="estrato">Estrato</option>
-
-								</select>
-
-								<div id="inputs">
-									<input type="text" class="controls" id="etinombre"
-										placeholder="Ingrese el nombre completo"
-										style="display: none;" required> <input type="date"
-										class="form-control" id="etifecha" name="etifecha"
-										placeholder="Ingresa tu fecha de nacimiento" required
-										style="display: none;"> <input type="text"
-										class="form-control" id="eticolegio" name="eticolegio"
-										placeholder="Ingresa el nombre de tu colegio" required
-										style="display: none;"> <input type="text" id="input4"
-										style="display: none;"> <input type="text" id="input5"
-										style="display: none;"> <input type="text" id="input6"
-										style="display: none;">
-								</div>
-
-							</div>
-							<button type="submit" class="btn btn-outline-success">Actualizar</button>
-						</form>
+                            </div>
+                            <button type="submit" class="btn btn-outline-success">Actualizar</button>
+                        </form>
 					</div>
 				</div>
 			</div>
