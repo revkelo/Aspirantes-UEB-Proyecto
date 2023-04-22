@@ -35,7 +35,7 @@ public class AspiranteDAO {
 	/**
 	 * Metodo para listar
 	 * 
-	 * @param lista con ArrayList<AspiranteDTO>
+	 * @param lista ArrayList con lista de aspirantes
 	 * @return rta un String
 	 */
 	public String listar(ArrayList<AspiranteDTO> lista) {
@@ -51,7 +51,7 @@ public class AspiranteDAO {
 	 * Metodo para eliminar
 	 * 
 	 * @param index atributo tipo entero
-	 * @param list  atributo tipo ArrayList<AspiranteDTO>
+	 * @param list  ArrayList con lista de aspirantes
 	 * @return la eliminacion del dato en la tabla
 	 */
 	public boolean delete(int index, ArrayList<AspiranteDTO> list) {
@@ -73,7 +73,7 @@ public class AspiranteDAO {
 	 * @param aux1 atributo tipo String que recibe el nombre por el que se va a
 	 *             buscar
 	 * @param aux  atributo tipo String que recibe el nombre del nuevo colegio
-	 * @param list atributo tipo ArrayList<AspiranteDTO> list
+	 * @param list ArrayList con lista de aspirantes
 	 * @return la actualizacion del dato en la tabla
 	 */
 	public boolean actualizar(String aux1, String aux, ArrayList<AspiranteDTO> list) {
@@ -94,7 +94,7 @@ public class AspiranteDAO {
 	 * Metodo buscar
 	 * 
 	 * @param aux  atributo tipo String por el que va a buscar
-	 * @param list ArrayList<AspiranteDTO>
+	 * @param list ArrayList con lista de aspirantes
 	 * @return el dato encontrado
 	 */
 

@@ -21,6 +21,10 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ServletAdmin extends HttpServlet {
 
 	/**
+	 * Atributo tipo final long para el id que serializara
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * Constante que representn el nombre de usuario del administrador
 	 */
 	private static final String ADMIN_USERNAME = "admin";

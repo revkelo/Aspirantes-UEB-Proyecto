@@ -120,7 +120,7 @@ public class FileHandler {
 	/**
 	 * Metodo para escribir en el csv
 	 * 
-	 * @param lista atributo tipo ArrayList<AspiranteDTO>
+	 * @param lista ArrayList con lista de aspirantes
 	 * @param url   atributo tipo String
 	 * @param size  atributo tipo int
 	 */

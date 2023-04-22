@@ -31,15 +31,33 @@ import jakarta.servlet.http.Part;
 import java.io.ByteArrayOutputStream;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 104 * 1024 * 10, maxRequestSize = 1024 * 1024 * 100)
+
 /**
- * 
  * Esta clase implementa un servlet que se utiliza para guardar datos de un
  * Aspirante
+ * 
+ * @author Kevin
+ * @author Daniela
+ * @author Nicolas
+ *
  */
 public class ServletGuardar extends HttpServlet {
 
+	/**
+	 * Atributo tipo final long para el id que serializara
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Atributo AspiranteDAO nombrado d
+	 */
 	private AspiranteDAO d;
+	/**
+	 * Atributo Console nombrado con
+	 */
 	private Console con;
+	/**
+	 * Atributo FileHandler nombrado f
+	 */
 	private FileHandler f;
 
 	/**
@@ -74,8 +92,6 @@ public class ServletGuardar extends HttpServlet {
 
 		salida.close();
 	}
-
-
 
 	/**
 	 * 
